@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> </title>
+        <link rel='stylesheet' href='http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css'>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'> </script>
+        <script src='http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js'> </script>
+        <script type='text/javascript'>
+            $(document).bind('pageinit', function() {
+                $('#toTop').tap(function() {
+                    $.get('/action/#{key}/0/go', function() {});
+                });
+                $('#toBotton').tap(function() {
+                    $.get('/action/#{key}/max/go', function() {});
+                });
+                $('#toUp').tap(function() {
+                    $.get('/action/#{key}/100/rew', function() {});
+                });
+                $('#toDown').tap(function() {
+                    $.get('/action/#{key}/100/ffd', function() {});
+                });
+            }); </script>
+    <body data-role="page">
+            <!--<header data-theme="a" data-role="header">
+                <h3> Header </h3>
+            </header>-->
+                <p href="#" id="toTop" ><img src="images/up_key.png" align="middle" height="42" width="42" /></p>
+                <p href="#" id="toUp" data-icon="arrow-u" data-iconpos="left"> <img src="images/left_key.png" height="42" width="42" /> <img src="images/down_key.png" height="42" width="42" /> <img src="images/right_key.png" height="42" width="42" /> </p>
+    </body>
