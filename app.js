@@ -57,7 +57,7 @@ app.get('/', function(req, res){
 		res.render('chat');
 	});*/
 
-	var FULL_ROOM = 1;
+	var FULL_ROOM = 2;
 	var game_masters = {};
 	var num_players;
 

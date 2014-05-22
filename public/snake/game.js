@@ -2,7 +2,8 @@ var snakeGame = function(el, players){
 
   var canvas = document.getElementById(el);
   var context = canvas.getContext("2d");
-  var game,food, snake, snake2;
+  var game,food;
+  var snake = [];
 
   game = {
     
@@ -19,7 +20,11 @@ var snakeGame = function(el, players){
       game.message = null;
       game.score = 0;
       game.fps = 8;
-      snake = new Snake();
+      for(var i = 0; i < players; i++){
+        snake.push(new Snake(i+1, i+2));
+        console.log('COBRAid ' + snake[i].id);
+      }
+      
       //snake.init();
       //snake2.init();
       food.set();
@@ -68,7 +73,7 @@ var snakeGame = function(el, players){
   };
 
 
-var Snake  = Class.create({
+var Snake = Class.create({
   
   size: canvas.width / 40,
   x: null,
@@ -76,12 +81,14 @@ var Snake  = Class.create({
   color: '#0F0',
   direction: 'L',
   sections: [],
+  id: null,
   
-  initialize: function() {
+  initialize: function(id, num) {
+    this.id = id;
     this.sections = [];
     this.direction = 'L';
-    this.x = canvas.width / 2 + this.size / 2;
-    this.y = canvas.height / 2 + this.size / 2;
+    this.x = canvas.width / num + this.size / 2;
+    this.y = canvas.height / num + this.size / 2;
     for (var i = this.x + (5 * this.size); i >= this.x; i -= this.size) {
       this.sections.push(i + ',' + this.y); 
     }
@@ -147,84 +154,6 @@ var Snake  = Class.create({
   
 }),
 
-/*snake2 = {
-  
-  size: canvas.width / 40,
-  x: null,
-  y: null,
-  color: '#0F0',
-  direction: 'L',
-  sections: [],
-  
-  init: function() {
-    snake2.sections = [];
-    snake2.direction = 'L';
-    snake2.x = canvas.width / 3 + snake2.size / 2;
-    snake2.y = canvas.height / 3 + snake2.size / 2;
-    for (var i = snake2.x + (5 * snake2.size); i >= snake2.x; i -= snake2.size) {
-      snake2.sections.push(i + ',' + snake2.y); 
-    }
-  },
-  
-  move: function() {
-    switch (snake2.direction) {
-      case 'U':
-        snake2.y -= snake2.size;
-        break;
-      case 'D':
-        snake2.y += snake2.size;
-        break;
-      case 'L':
-        snake2.x -= snake2.size;
-        break;
-      case 'R':
-        snake2.x += snake2.size;
-        break;
-    }
-    snake2.checkCollision();
-    snake2.checkGrowth();
-    snake2.sections.push(snake2.x + ',' + snake2.y);
-  },
-  
-  draw: function() {
-    for (var i = 0; i < snake2.sections.length; i++) {
-      snake2.drawSection(snake2.sections[i].split(','));
-    }    
-  },
-  
-  drawSection: function(section) {
-    game.drawBox(parseInt(section[0]), parseInt(section[1]), snake2.size, snake.color);
-  },
-  
-  checkCollision: function() {
-    if (snake2.isCollision(snake2.x, snake2.y) === true) {
-      game.stop();
-    }
-  },
-  
-  isCollision: function(x, y) {
-    if (x < snake2.size / 2 ||
-        x > canvas.width ||
-        y < snake2.size / 2 ||
-        y > canvas.height ||
-        snake2.sections.indexOf(x + ',' + y) >= 0) {
-      return true;
-    }
-  },
-  
-  checkGrowth: function() {
-    if (snake2.x == food.x && snake2.y == food.y) {
-      game.score++;
-      if (game.score % 5 == 0 && game.fps < 60) {
-        game.fps++;
-      }
-      food.set();
-    } else {
-      snake2.sections.shift();
-    }
-  }
-  
-},*/
 
 food = {
   
@@ -234,9 +163,9 @@ food = {
   color: '#0FF',
   
   set: function() {
-    food.size = snake.size;
+    /*food.size = snake.size;
     food.x = (Math.ceil(Math.random() * 10) * snake.size * 4) - snake.size / 2;
-    food.y = (Math.ceil(Math.random() * 10) * snake.size * 3) - snake.size / 2;
+    food.y = (Math.ceil(Math.random() * 10) * snake.size * 3) - snake.size / 2;*/
   },
   
   draw: function() {
@@ -264,10 +193,12 @@ return {
           if (game.over == false) {
             game.resetCanvas();
             game.drawScore();
-            snake.move();
+            //snake.move();
             food.draw();
-
-            snake.draw();
+            for(var i = 0; i < snake.length; i++){
+              console.log("NUM_COBRAS " + snake[i]);
+              snake[i].draw();
+            };
             //snake2.move();
             food.draw();
             /*if(players > 1){
@@ -286,8 +217,8 @@ return {
   setDirection: function(dir){
       if(game.over)
         game.start();
-      else
-        snake.direction=dir;
+      //else
+        //snake.direction=dir;
     },
 }
 

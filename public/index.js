@@ -1,7 +1,6 @@
 var game;
 
-
-var socket = io.connect('http://172.30.28.42:8080');
+var socket = io.connect('http://localhost:8080');
 
 	socket.on('connect', function(){
 		console.log('SERVER READY');
