@@ -20,7 +20,7 @@ var snakeGame = function(el, players){
       game.message = null;
       game.score = 0;
       game.fps = 8;
-      for(var i = 0; i < players; i++){
+      for(var i = 0; i < players.length; i++){
         snake.push(new Snake(i+1, i+2));
         console.log('COBRAid ' + snake[i].id);
       }

@@ -9,7 +9,7 @@ var socket = io.connect('http://localhost:8080');
 
 	socket.on('START', function(data){
 		console.log(data);
-		console.log('START GAME ' + data.players);
+		console.log('START GAME ' + data.players.length);
 		$('code').remove();
 		$('game').setStyle({
 		  display: 'block'
