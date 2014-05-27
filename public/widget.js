@@ -1,5 +1,4 @@
 
-
 //Abstract Widget
 
 	var Widget = Class.create({
@@ -14,7 +13,7 @@
 		SWIPE: "SWIPE",
 		NAME: "SET_NAME",
 		READY: "CLIENT_READY",
-		name: null,
+		_name: null,
 		id: null,
 
 		handleResponse: function(){
@@ -33,23 +32,22 @@
 			});
 
 			socket.on('NAME', function(data){
-				this.name = data.names;
+				name = data.names;
 				//alert(this.name);
 			});
 		},
 
 		
-		initialize: function (elem, url, id, name){
+		initialize: function (elem, url, id){
 			this.url = url;
 
 			//connect to server
 			socket = io.connect(url);
 			this.id=id;
-			//alert("coisas lindas");
 			socket.emit('load');
 	
 			this.handleResponse();
-			//this.setReady();
+			this.setName();
 			this.draw(elem);
 			this.handleInput();
 
@@ -59,7 +57,7 @@
 		sendToServer: function(key, obj){
 			var payload = {};
 			payload.id=this.id;
-			payload.name=this.name;
+			payload.name=name;
 			payload.cmd=obj;
 			socket.emit(key,payload);
 			console.log("emit "+key+" "+ payload.name);
@@ -201,8 +199,11 @@
 
 
 Event.observe(window, 'load', function() {
-myTest = new Joystick('#widget','http://localhost:8080',"dsfsddfs");
 
-myTest.setReady();
+	myTest = new Joystick('#widget','http://172.30.1.241:8080',"dsfsddfs");
+	
+	myTest.setReady();
+
+	
 });
 

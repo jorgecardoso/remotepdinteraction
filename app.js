@@ -84,13 +84,11 @@ app.get('/panel', function (req, res) {
 		socket.on('SET_NAME', function(data){
 			num_players =game.clients(data.id).length;
 
-			socket.join(data.id);
-
-			data.name="player"+(num_players);
+			data.name= num_players;
 
 			_players.push(data.name);
 
-			game.in(data.id).emit('NAME',{ names: data.name });
+			socket.emit('NAME',{ names: data.name });
 			console.log("My name: "+ data.name);
 
 		})
@@ -111,7 +109,7 @@ app.get('/panel', function (req, res) {
     	socket.on('DIRECTION', function(data){
     		console.log(data);
 
-    		io.sockets.socket(game_masters[data.id]).emit("asd",data.cmd);
+    		io.sockets.socket(game_masters[data.id]).emit("asd",data);
     	});
 
     	socket.on('TEXT', function(x){console.log("Copyright by MARIA: "+x)});

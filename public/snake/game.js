@@ -2,8 +2,10 @@ var snakeGame = function(el, players){
 
   var canvas = document.getElementById(el);
   var context = canvas.getContext("2d");
-  var game,food;
+  var game, player;
   var snake = [];
+  var can_move = [];
+  var food = [];
 
   game = {
     
@@ -20,14 +22,15 @@ var snakeGame = function(el, players){
       game.message = null;
       game.score = 0;
       game.fps = 8;
-      for(var i = 0; i < players.length; i++){
+      snake = [];
+      can_move = [];
+      for(var i = 0; i < players.length; i++){       
         snake.push(new Snake(i+1, i+2));
-        console.log('COBRAid ' + snake[i].id);
+        can_move.push(false);
+        food.push(new Food(snake[i]));
+        food[i].set();
       }
       
-      //snake.init();
-      //snake2.init();
-      food.set();
     },
     
     stop: function() {
@@ -141,38 +144,47 @@ var Snake = Class.create({
   },
   
   checkGrowth: function() {
-    if (this.x == food.x && this.y == food.y) {
+  for(var i = 0; i < food.length; i++){
+    if (this.x == food[i].x && this.y == food[i].y) {
       game.score++;
       if (game.score % 5 == 0 && game.fps < 60) {
         game.fps++;
       }
-      food.set();
+      food[i].set();
     } else {
       this.sections.shift();
     }
   }
+}
   
-}),
+})
 
 
-food = {
-  
+var Food = Class.create({
+
   size: null,
   x: null,
   y: null,
   color: '#0FF',
+  snake: null,
+  
+  initialize: function(snake) {
+      this.snake = snake;
+  },
+
+  
   
   set: function() {
-    /*food.size = snake.size;
-    food.x = (Math.ceil(Math.random() * 10) * snake.size * 4) - snake.size / 2;
-    food.y = (Math.ceil(Math.random() * 10) * snake.size * 3) - snake.size / 2;*/
+    this.size = this.snake.size;
+    this.x = (Math.ceil(Math.random() * 10) * this.snake.size * 4) - this.snake.size / 2;
+    this.y = (Math.ceil(Math.random() * 10) * this.snake.size * 3) - this.snake.size / 2;
   },
   
   draw: function() {
-    game.drawBox(food.x, food.y, food.size, food.color);
+    game.drawBox(this.x, this.y, this.size, this.color);
   }
   
-};
+});
 
 inverseDirection = {
   'up': 'down',
@@ -190,21 +202,20 @@ return {
               window.mozRequestAnimationFrame;
 
         function loop() {
-          if (game.over == false) {
+          if (game.over == false ) {
             game.resetCanvas();
             game.drawScore();
-            //snake.move();
-            food.draw();
+            
             for(var i = 0; i < snake.length; i++){
               console.log("NUM_COBRAS " + snake[i]);
+              if(can_move[i] == true){
+
+                snake[i].move();
+              }
+              food[i].draw();
               snake[i].draw();
-            };
-            //snake2.move();
-            food.draw();
-            /*if(players > 1){
-              console.log("jogadores " + players);
-              snake2.draw();
-            }*/
+            }
+
             game.drawMessage();
           }
           setTimeout(function() {
@@ -214,11 +225,17 @@ return {
 
         requestAnimationFrame(loop);
       },
-  setDirection: function(dir){
+
+  setDirection: function(player, dir){
+  player = player;
+
       if(game.over)
         game.start();
-      //else
-        //snake.direction=dir;
+      else {
+        console.log("PLAYER: " + player);
+        snake[player-1].direction=dir;
+        can_move[player-1] = true;
+      }
     },
 }
 

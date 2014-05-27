@@ -1,6 +1,6 @@
 var game;
 
-var socket = io.connect('http://localhost:8080');
+var socket = io.connect('http://172.30.1.241:8080');
 
 	socket.on('connect', function(){
 		console.log('SERVER READY');
@@ -9,7 +9,6 @@ var socket = io.connect('http://localhost:8080');
 
 	socket.on('START', function(data){
 		console.log(data);
-		console.log('START GAME ' + data.players.length);
 		$('code').remove();
 		$('game').setStyle({
 		  display: 'block'
@@ -19,6 +18,8 @@ var socket = io.connect('http://localhost:8080');
 	});
 
 	socket.on('asd', function(data){
-		console.log(data);
-		game.setDirection(data);
+		console.log("Jogador: " + data.name + " comando: " + data.cmd);
+		//game.setPlayer(data.name);
+		game.setDirection(data.name, data.cmd);
+		
 	});
