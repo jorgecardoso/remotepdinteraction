@@ -2,14 +2,13 @@ var snakeGame = function(el, players){
 
   var canvas = document.getElementById(el);
   var context = canvas.getContext("2d");
-  var game, player;
+  var game, player, eat;
   var snake = [];
   var can_move = [];
   var food = [];
 
   game = {
     
-    score: 0,
     fps: 8,
     over: false,
     message: null,
@@ -20,10 +19,11 @@ var snakeGame = function(el, players){
       console.log("start");
       game.over = false;
       game.message = null;
-      game.score = 0;
+      //game.score = 0;
       game.fps = 8;
       snake = [];
       can_move = [];
+      food = [];
       for(var i = 0; i < players.length; i++){       
         snake.push(new Snake(i+1, i+2));
         can_move.push(false);
@@ -36,6 +36,9 @@ var snakeGame = function(el, players){
     stop: function() {
       game.over = true;
       game.message = 'GAME OVER - PRESS SPACEBAR';
+      for(var i=0; i < players.length; i++){
+        console.log("COBRA: " + snake[i].id + " SCORE: " + snake[i].score);
+      }
     },
     
     drawBox: function(x, y, size, color) {
@@ -85,13 +88,17 @@ var Snake = Class.create({
   direction: 'L',
   sections: [],
   id: null,
+  score: 0,
   
   initialize: function(id, num) {
     this.id = id;
     this.sections = [];
     this.direction = 'L';
-    this.x = canvas.width / num + this.size / 2;
-    this.y = canvas.height / num + this.size / 2;
+    this.score=0;
+    //this.x = num*10;
+    //this.y = num*12;
+    this.x = Math.round(canvas.width / num + this.size / 2);
+    this.y = Math.round(canvas.height / num + this.size / 2);
     for (var i = this.x + (5 * this.size); i >= this.x; i -= this.size) {
       this.sections.push(i + ',' + this.y); 
     }
@@ -107,7 +114,7 @@ var Snake = Class.create({
         break;
       case 'L':
         this.x -= this.size;
-        break;
+        break;nooo
       case 'R':
         this.x += this.size;
         break;
@@ -115,6 +122,7 @@ var Snake = Class.create({
     this.checkCollision();
     this.checkGrowth();
     this.sections.push(this.x + ',' + this.y);
+   
   },
   
   draw: function() {
@@ -144,18 +152,22 @@ var Snake = Class.create({
   },
   
   checkGrowth: function() {
+    
   for(var i = 0; i < food.length; i++){
-    if (this.x == food[i].x && this.y == food[i].y) {
-      game.score++;
-      if (game.score % 5 == 0 && game.fps < 60) {
+    if (Math.abs(this.x-food[i].x)<=3 && Math.abs(this.y-food[i].y)<=3){ 
+      this.score++;
+      eat = true;
+      if (this.score % 5 == 0 && game.fps < 60) {
         game.fps++;
       }
       food[i].set();
     } else {
-      this.sections.shift();
+      eat = false;
     }
   }
-}
+   if(eat==false)
+      this.sections.shift();
+  }
   
 })
 
@@ -176,8 +188,13 @@ var Food = Class.create({
   
   set: function() {
     this.size = this.snake.size;
-    this.x = (Math.ceil(Math.random() * 10) * this.snake.size * 4) - this.snake.size / 2;
-    this.y = (Math.ceil(Math.random() * 10) * this.snake.size * 3) - this.snake.size / 2;
+    this.x = 0;
+    this.y = 0;
+    while (this.x<=0 || this.y <=0) {
+
+       this.x = (Math.ceil(Math.random() * 10) * this.snake.size * 4) - this.snake.size / 2;
+      this.y = (Math.ceil(Math.random() * 10) * this.snake.size * 3) - this.snake.size / 2;
+    }
   },
   
   draw: function() {
@@ -204,14 +221,14 @@ return {
         function loop() {
           if (game.over == false ) {
             game.resetCanvas();
-            game.drawScore();
+            //game.drawScore();
             
             for(var i = 0; i < snake.length; i++){
               console.log("NUM_COBRAS " + snake[i]);
               if(can_move[i] == true){
-
                 snake[i].move();
               }
+
               food[i].draw();
               snake[i].draw();
             }
