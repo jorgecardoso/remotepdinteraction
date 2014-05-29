@@ -59,7 +59,7 @@ app.get('/panel', function (req, res) {
 		res.render('chat');
 	});*/
 
-	var FULL_ROOM = 2;
+	var FULL_ROOM = 1;
 	var game_masters = {};
 	var num_players;
 	var _players = [];
@@ -77,13 +77,13 @@ app.get('/panel', function (req, res) {
 			
 			
 			if(game.clients(data.id).length==FULL_ROOM+1)
-				game.in(data.id).emit('START', {});
+				game.in(data.id).emit('NEW_PLAYER', {});
 				
 		})
 
 		socket.on('SET_NAME', function(data){
-			num_players =game.clients(data.id).length;
-
+			num_players = game.clients(data.id).length;
+			console.log("PLAYERS: " + num_players);
 			data.name= num_players;
 
 			_players.push(data.name);
@@ -99,9 +99,9 @@ app.get('/panel', function (req, res) {
 			socket.join(data.id);
 			num_players =game.clients(data.id).length;
 			console.log(_players); 
-			if(num_players==FULL_ROOM+1 && game_masters[data.id]!=undefined)
+			//if(num_players==FULL_ROOM+1 && game_masters[data.id]!=undefined)
 				
-				game.in(data.id).emit('START',{ players: _players });
+				game.in(data.id).emit('NEW_PLAYER',{ player: data.name});
 				console.log("Numero " + num_players);
 
 		})

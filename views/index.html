@@ -6,6 +6,7 @@
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<link rel="stylesheet" type="text/css" href="normalize.css">
 <link rel="stylesheet" href="page.css" type="text/css">
 <script src="/socket.io/socket.io.js"></script>
 <!--<script type="text/javascript" src="jquery.min.js"></script>-->
@@ -14,29 +15,45 @@
 <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
-<div id="code">
-	<a href="http://172.30.23.113:8080/panel"><img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http://172.30.23.113:8080/panel &choe=UTF-8" alt=""/></a>
-</div>
-<div id="game">
-	<h1>html5-snake</h1>
-	<p>
-		<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a> variation of the classic <a href="http://en.wikipedia.org/wiki/Snake_(video_game)">snake game</a>.
-	</p>
+	<header>
+		<h1>html5-snake</h1>
+	</header>
 
-	<div>
-	  <canvas id="the-game" width="320" height="240">
+	<div class="wrapper clearfix">
+
+		<div id="game">
+			<canvas id="the-game" width="640" height="480">
+		</div>
+		
+		<div id="panel">
+			<div class="scores">
+				<h1>
+						Your score!
+				</h1>
+
+				<p>...</p>
+				<p>...</p>
+				<p>...</p>
+			</div>
+
+			<div class="instructions">
+				<p>Control snake with arrow keys, WASD, or HJKL (vim keys).</p>
+
+				<p>New food may appear under snake, uncoil to reveal.</p>
+
+				<p>Collect the food to grow and increase speed.</p>
+			</div>
+
+			<div class="code">
+				<a href="http://172.30.13.112:8080/panel"><img src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=http://172.30.13.112:8080/panel &amp;choe=UTF-8" alt=""/></a>
+			</div>
+		</div>
+
 	</div>
 
-	<p>Control snake with arrow keys, WASD, or HJKL (vim keys).</p>
-
-	<p>New food may appear under snake, uncoil to reveal.</p>
-
-	<p>Collect the food to grow and increase speed.</p>
-
-	<p>&copy; 2013 - 
-		<a href="http://JDStraughan.com">JDStraughan.com</a> - <a href="https://github.com/JDStraughan/html5-snake">Source on GitHub</a>
-	</p>  
-	
-</div>
+	<footer>
+		<p>&copy; 2013 - <a href="http://JDStraughan.com">JDStraughan.com</a> - <a href="https://github.com/JDStraughan/html5-snake">Source on GitHub</a>
+		</p>
+	</footer>
 </body>
 </html>

@@ -1,11 +1,12 @@
-var snakeGame = function(el, players){ 
+var snakeGame = function(el){ 
 
   var canvas = document.getElementById(el);
   var context = canvas.getContext("2d");
   var game, player, eat;
-  var snake = [];
+  var snakes = [];
   var can_move = [];
   var food = [];
+  var players = [];
 
   game = {
     
@@ -21,15 +22,13 @@ var snakeGame = function(el, players){
       game.message = null;
       //game.score = 0;
       game.fps = 8;
-      snake = [];
-      can_move = [];
-      food = [];
-      for(var i = 0; i < players.length; i++){       
-        snake.push(new Snake(i+1, i+2));
-        can_move.push(false);
-        food.push(new Food(snake[i]));
-        food[i].set();
+      for(var i=0; i<snakes.length; i++){
+        snakes[i].init(i+2);
+        can_move[i]=false;
       }
+      /*snakes = [];
+      can_move = [];
+      food = [];*/
       
     },
     
@@ -37,7 +36,7 @@ var snakeGame = function(el, players){
       game.over = true;
       game.message = 'GAME OVER - PRESS SPACEBAR';
       for(var i=0; i < players.length; i++){
-        console.log("COBRA: " + snake[i].id + " SCORE: " + snake[i].score);
+        console.log("COBRA: " + snakes[i].id + " SCORE: " + snakes[i].score);
       }
     },
     
@@ -92,17 +91,22 @@ var Snake = Class.create({
   
   initialize: function(id, num) {
     this.id = id;
+    this.init(num);
+  },
+
+  init: function(num){
+
     this.sections = [];
     this.direction = 'L';
     this.score=0;
-    //this.x = num*10;
-    //this.y = num*12;
     this.x = Math.round(canvas.width / num + this.size / 2);
     this.y = Math.round(canvas.height / num + this.size / 2);
     for (var i = this.x + (5 * this.size); i >= this.x; i -= this.size) {
       this.sections.push(i + ',' + this.y); 
     }
+
   },
+
   
   move: function() {
     switch (this.direction) {
@@ -169,7 +173,7 @@ var Snake = Class.create({
       this.sections.shift();
   }
   
-})
+});
 
 
 var Food = Class.create({
@@ -211,6 +215,7 @@ inverseDirection = {
 };
 
 
+
 return {
   start: function(){
         game.start();
@@ -223,14 +228,14 @@ return {
             game.resetCanvas();
             //game.drawScore();
             
-            for(var i = 0; i < snake.length; i++){
-              console.log("NUM_COBRAS " + snake[i]);
+            for(var i = 0; i < snakes.length; i++){
+              console.log("NUM_COBRAS " + snakes[i]);
               if(can_move[i] == true){
-                snake[i].move();
+                snakes[i].move();
               }
 
               food[i].draw();
-              snake[i].draw();
+              snakes[i].draw();
             }
 
             game.drawMessage();
@@ -243,21 +248,34 @@ return {
         requestAnimationFrame(loop);
       },
 
-  setDirection: function(player, dir){
-  player = player;
+  setPlayers: function(name){
 
-      if(game.over)
-        game.start();
-      else {
-        console.log("PLAYER: " + player);
-        snake[player-1].direction=dir;
-        can_move[player-1] = true;
-      }
-    },
+    player = name;
+    players.push(player);
+    snakes.push(new Snake(snakes.length+1, snakes.length+2));
+    can_move.push(false);
+    food.push(new Food(snakes[snakes.length-1]));
+    food[snakes.length-1].set();
+
+   
+
+  },
+
+  setDirection: function(player, dir){
+
+   if(game.over)
+      game.start();
+    else {
+      snakes[player-1].direction=dir;
+      can_move[player-1] = true;
+    }
+},
 }
 
 
 };
+
+
 /*
 var keys = {
   up: [38, 75, 87],
