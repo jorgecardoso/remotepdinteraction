@@ -200,7 +200,7 @@
 
 Event.observe(window, 'load', function() {
 
-	myTest = new Joystick('#widget','http://172.30.23.113:8080',"dsfsddfs");
+	myTest = new Joystick('#widget','http://172.30.13.112:8080',"dsfsddfs");
 	
 	myTest.setReady();
 
