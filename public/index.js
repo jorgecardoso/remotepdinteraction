@@ -2,7 +2,7 @@ var game;
 
 
 
-var socket = io.connect('http://172.30.13.112:8080');
+var socket = io.connect('http://193.126.249.135:8080');
 
 socket.on('connect', function(){
 	console.log('SERVER READY');
