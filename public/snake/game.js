@@ -34,7 +34,7 @@ var snakeGame = function(el){
     
     stop: function() {
       game.over = true;
-      game.message = 'GAME OVER - PRESS SPACEBAR';
+      game.message = 'GAME OVER';
       for(var i=0; i < players.length; i++){
         console.log("COBRA: " + snakes[i].id + " SCORE: " + snakes[i].score);
       }
@@ -83,7 +83,7 @@ var Snake = Class.create({
   size: canvas.width / 40,
   x: null,
   y: null,
-  color: '#0F0',
+  color: null, //'#0F0',
   direction: 'L',
   sections: [],
   id: null,
@@ -92,6 +92,7 @@ var Snake = Class.create({
   initialize: function(id, num) {
     this.id = id;
     this.init(num);
+    this.getRandomColor();
   },
 
   init: function(num){
@@ -105,6 +106,14 @@ var Snake = Class.create({
       this.sections.push(i + ',' + this.y); 
     }
 
+  },
+
+  getRandomColor: function() {
+    var letters = '0123456789ABCDEF'.split('');
+    this.color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        this.color += letters[Math.floor(Math.random() * 16)];
+    }
   },
 
   
