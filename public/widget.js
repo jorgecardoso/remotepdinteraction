@@ -45,11 +45,11 @@
 			socket = io.connect(url);
 			this.id=id;
 			socket.emit('load');
-	
+			this.addWidget('#my_widgets')
 			this.handleResponse();
 			this.setName();
-			this.draw(elem);
-			this.handleInput();
+			//this.draw(elem);
+			//this.handleInput();
 
 		},
 
@@ -88,7 +88,9 @@
 
 		draw: function(elem) {},
 
-		handleInput: function() {}
+		handleInput: function() {},
+
+		addWidget: function(){}
 	})
 
 	//onReceiveText(txt);
@@ -133,6 +135,7 @@
                	divDown.appendChild(img);
 				
              }
+        this.handleInput();
     	},
 
     	//adicionar os eventos ao botoes
@@ -155,6 +158,25 @@
     			that.sendDirection(that.LEFT);
     		});
 
+    	},
+
+    	addWidget: function(elem){
+    		var that = this;
+
+    		var li = new Element('li');
+    		$$(elem)[0].appendChild(li);
+    		var a = new Element('a', {'id': 'joystick', 'class': 'icon'});
+    		li.appendChild(a);
+
+    		$('joystick').on('click',function(){
+    			$('widget').update('');
+    			that.draw('#widget');
+    		})
+
+    		/*var img = new Element('img', {'id': 'arrow_keys'});
+    		img.src = 'images/icon_keys.png';
+    		a.appendChild(img); 
+    		//a.update('Joystick');*/
     	}
 
 	})
@@ -174,6 +196,8 @@
 			$$(elem)[0].appendChild(newDiv);
 			var button = new Element('input', {'type': 'submit', 'id': 'button', value: 'Submit'});
 			newDiv.appendChild(button);
+
+			this.handleInput();
 		},
 
 		handleInput: function() {
@@ -187,8 +211,74 @@
 				that.sendText($(input).getValue());
 				//alert($(input).getValue());
 			});
-		}
+		},
+
+		addWidget: function(elem){
+
+			var that = this;
+
+    		var li = new Element('li');
+    		$$(elem)[0].appendChild(li);
+    		var a = new Element('a', {'id': 'text_input', 'class': 'icon'});
+    		li.appendChild(a);
+
+    		$("text_input").on('click', function(){
+    			$('widget').update('');
+    			that.draw('#widget');
+    		});
+    		/*var img = new Element('img', {'id': 'input_text'});
+    		img.src = 'images/icon_text.png';
+    		a.appendChild(img); 
+    		//a.update('Joystick');*/
+    	}
+
 	});
+
+	var Swipe = Class.create(Widget, {
+
+		//draw a input box 
+
+		draw: function(elem){
+			var div = new Element('div', {'id': 'swipe'});
+			$$(elem)[0].appendChild(div);
+
+			this.handleInput();
+		},
+
+		handleInput: function() {
+			var that = this;
+
+			document.observe("dom:loaded", function () {
+
+				var swipeMe = $("swipe");
+
+				new Swipeable(swipeMe);
+
+				swipeMe.observe("swipe:up", function () {console.log("swiped up");});
+				swipeMe.observe("swipe:down", function () {console.log("swiped down");});
+				swipeMe.observe("swipe:left", function () {console.log("swiped left");});
+				swipeMe.observe("swipe:right", function () {console.log("swiped right");});
+			});
+
+		},
+
+		addWidget: function(elem){
+
+			var that = this;
+
+    		var li = new Element('li');
+    		$$(elem)[0].appendChild(li);
+    		var a = new Element('a', {'id': 'swipe_button', 'class': 'icon'});
+    		li.appendChild(a);
+
+    		$("swipe_button").on('click', function(){
+    			$('widget').update('');
+    			that.draw('#widget');
+    		});
+    	}
+
+	});
+
 	
 	
 
@@ -200,10 +290,14 @@
 
 Event.observe(window, 'load', function() {
 
-	myTest = new Joystick('#widget','http://193.126.249.135:8080',"dsfsddfs");
+	arrows = new Joystick('#widget','http://172.30.19.77:8080',"dsfsddfs");
 	
-	myTest.setReady();
+	text = new inputText('#widget', 'http://172.30.19.77:8080',"dsfsddfs");
 
+	swipe = new Swipe('#widget', 'http://172.30.19.77:8080',"dsfsddfs");
+	arrows.setReady();
+	text.setReady();
+	swipe.setReady();
 	
 });
 
