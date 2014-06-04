@@ -113,6 +113,10 @@ app.get('/panel', function (req, res) {
     	});
 
     	socket.on('TEXT', function(x){console.log("Copyright by MARIA: "+x)});
+
+    	socket.on('SWIPE', function(data){
+    		io.sockets.socket(game_masters[data.id]).emit("asd",data);
+    	});
 		
 		// When the client emits the 'load' event, reply with the 
 		// number of people in this chat room

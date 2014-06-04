@@ -60,7 +60,7 @@
 			payload.name=name;
 			payload.cmd=obj;
 			socket.emit(key,payload);
-			console.log("emit "+key+" "+ payload.name);
+			console.log("emit "+key+" "+ payload.cmd);
 		},
 
 		sendDirection: function(dir){
@@ -79,11 +79,11 @@
 			this.sendToServer(this.NAME, {});
 		},
 
-		sendSwipe: function(dir, ints){
-			var res;
+		sendSwipe: function(dir){
+			/*var res;
 			res.dir=dir;
-			res.ints=ints;
-			this.sendToServ(this.SWIPE,res);	
+			res.ints=ints;*/
+			this.sendToServer(this.SWIPE,dir);	
 		},
 
 		draw: function(elem) {},
@@ -201,6 +201,7 @@
 		},
 
 		handleInput: function() {
+
 			var that = this;
 
 			var form = $('someText');
@@ -247,18 +248,23 @@
 
 		handleInput: function() {
 			var that = this;
-
-			document.observe("dom:loaded", function () {
-
-				var swipeMe = $("swipe");
-
+			console.log("SWIPE");
+			
+				var swipeMe = $('swipe');
 				new Swipeable(swipeMe);
-
-				swipeMe.observe("swipe:up", function () {console.log("swiped up");});
-				swipeMe.observe("swipe:down", function () {console.log("swiped down");});
-				swipeMe.observe("swipe:left", function () {console.log("swiped left");});
-				swipeMe.observe("swipe:right", function () {console.log("swiped right");});
-			});
+				
+				swipeMe.observe("swipe:up", function () {
+					that.sendSwipe(that.UP);
+				;});
+				swipeMe.observe("swipe:down", function () {
+					that.sendSwipe(that.DOWN);
+				});
+				swipeMe.observe("swipe:left", function () {
+					that.sendSwipe(that.LEFT);
+				});
+				swipeMe.observe("swipe:right", function () {
+					that.sendSwipe(that.RIGHT);
+				});
 
 		},
 
@@ -279,22 +285,15 @@
 
 	});
 
-	
-	
-
-	/*function onReceiveText(tex){
-		$("mylabel").setText(tex);
-	}*/
-
 
 
 Event.observe(window, 'load', function() {
 
-	arrows = new Joystick('#widget','http://172.30.19.77:8080',"dsfsddfs");
+	arrows = new Joystick('#widget','http://172.30.10.172:8080',"dsfsddfs");
 	
-	text = new inputText('#widget', 'http://172.30.19.77:8080',"dsfsddfs");
+	text = new inputText('#widget', 'http://172.30.10.172:8080',"dsfsddfs");
 
-	swipe = new Swipe('#widget', 'http://172.30.19.77:8080',"dsfsddfs");
+	swipe = new Swipe('#widget', 'http://172.30.10.172:8080',"dsfsddfs");
 	arrows.setReady();
 	text.setReady();
 	swipe.setReady();
