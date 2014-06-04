@@ -19,32 +19,34 @@
 		handleResponse: function(){
 
 			
-			socket.on('connect', function(data){
+			this.socket.on('connect', function(data){
 				//socket.emit('i am client', {data: 'foo!'});
 				console.log("estou aqui");
 				//onReceiveText(data);
 			});
 
-			socket.on('START', function(data){
+			this.socket.on('START', function(data){
 				//socket.emit('i am client', {data: 'foo!'});
 				//alert("START " + data.players);
 				//onReceiveText(data);
 			});
 
-			socket.on('NAME', function(data){
+			this.socket.on('NAME', function(data){
 				name = data.names;
 				//alert(this.name);
 			});
 		},
 
 		
-		initialize: function (elem, url, id){
-			this.url = url;
+		initialize: function (elem, id, socket){
+			
 
 			//connect to server
-			socket = io.connect(url);
+				
+			this.socket = socket;
+
 			this.id=id;
-			socket.emit('load');
+			//socket.emit('load');
 			this.addWidget('#my_widgets')
 			this.handleResponse();
 			this.setName();
@@ -59,7 +61,7 @@
 			payload.id=this.id;
 			payload.name=name;
 			payload.cmd=obj;
-			socket.emit(key,payload);
+			this.socket.emit(key,payload);
 			console.log("emit "+key+" "+ payload.cmd);
 		},
 
@@ -173,10 +175,6 @@
     			that.draw('#widget');
     		})
 
-    		/*var img = new Element('img', {'id': 'arrow_keys'});
-    		img.src = 'images/icon_keys.png';
-    		a.appendChild(img); 
-    		//a.update('Joystick');*/
     	}
 
 	})
@@ -210,7 +208,6 @@
 
 			$('button').on('click', function(){
 				that.sendText($(input).getValue());
-				//alert($(input).getValue());
 			});
 		},
 
@@ -227,10 +224,7 @@
     			$('widget').update('');
     			that.draw('#widget');
     		});
-    		/*var img = new Element('img', {'id': 'input_text'});
-    		img.src = 'images/icon_text.png';
-    		a.appendChild(img); 
-    		//a.update('Joystick');*/
+  
     	}
 
 	});
@@ -289,14 +283,15 @@
 
 Event.observe(window, 'load', function() {
 
-	arrows = new Joystick('#widget','http://172.30.10.172:8080',"dsfsddfs");
-	
-	text = new inputText('#widget', 'http://172.30.10.172:8080',"dsfsddfs");
+	var socket = io.connect('http://172.30.10.172:8080');
 
-	swipe = new Swipe('#widget', 'http://172.30.10.172:8080',"dsfsddfs");
-	arrows.setReady();
-	text.setReady();
-	swipe.setReady();
+	arrows = new Joystick('#widget',"dsfsddfs", socket);
+	
+	text = new inputText('#widget',"dsfsddfs", socket);
+
+	swipe = new Swipe('#widget', "dsfsddfs", socket);
+	
+	socket.emit('CLIENT_READY',{ id: "dsfsddfs"});
 	
 });
 
