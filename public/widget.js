@@ -1,39 +1,71 @@
 
 //Abstract Widget
+;(function(window, document) {
+
+	var socket, 
+	DEFAULT_PORT=8080,
+	LEFT = "L",
+	RIGHT = "R",
+	UP = "U",
+	DOWN = "D",
+	DIRECTION = "DIRECTION",
+	TEXT = "TEXT",
+	SWIPE = "SWIPE",
+	NAME = "SET_NAME",
+	READY = "CLIENT_READY";
+	//widgetbar,
+	//DEFAULT_OPTIONS = {
+		//widgetbar : true
+	//};	
+
+	/*function extend(a, b){
+	    for(var key in b)
+	        if(b.hasOwnProperty(key))
+	            a[key] = b[key];
+	    return a;
+	}*/
+
+	function start(url, options){
+		//var port = url.match(/:(\d+)/);
+		//url += port ? "" : DEFAULT_PORT;
+		console.log(options)
+		//console.log(DEFAULT_OPTIONS)
+
+		//Object.extend(DEFAULT_OPTIONS, options);
+		console.log(options)
+		//widgetbar = options.widgetbar;
+		socket = io.connect(url);
+	}
+
+	function ready(){
+
+		socket.emit('CLIENT_READY',{ id: "dsfsddfs"});
+	} 
 
 	var Widget = Class.create({
 		url: null,
 		socket: null,
-		LEFT : "L",
-		RIGHT : "R",
-		UP : "U",
-		DOWN : "D",
-		DIRECTION: "DIRECTION",
-		TEXT: "TEXT",
-		SWIPE: "SWIPE",
-		NAME: "SET_NAME",
-		READY: "CLIENT_READY",
 		_name: null,
 		id: null,
 
 		handleResponse: function(){
 
 			
-			this.socket.on('connect', function(data){
+			socket.on('connect', function(data){
 				//socket.emit('i am client', {data: 'foo!'});
 				console.log("estou aqui");
 				//onReceiveText(data);
 			});
 
-			this.socket.on('START', function(data){
+			socket.on('START', function(data){
 				//socket.emit('i am client', {data: 'foo!'});
 				//alert("START " + data.players);
 				//onReceiveText(data);
 			});
 
-			this.socket.on('NAME', function(data){
+			socket.on('NAME', function(data){
 				name = data.names;
-				//alert(this.name);
+				//alert(name);
 			});
 		},
 
@@ -43,13 +75,17 @@
 
 			//connect to server
 				
-			this.socket = socket;
+			socket = socket;
 
 			this.id=id;
 			//socket.emit('load');
-			this.addWidget('#my_widgets')
+			/*if(widgetbar)
+				this.addWidget('#my_widgets')*/
+				console.log("adiciona");
+			this.addWidget('#my_widgets');
 			this.handleResponse();
 			this.setName();
+			
 			//this.draw(elem);
 			//this.handleInput();
 
@@ -61,38 +97,37 @@
 			payload.id=this.id;
 			payload.name=name;
 			payload.cmd=obj;
-			this.socket.emit(key,payload);
+			socket.emit(key,payload);
 			console.log("emit "+key+" "+ payload.cmd);
 		},
 
 		sendDirection: function(dir){
-			this.sendToServer(this.DIRECTION,dir);
+			this.sendToServer(DIRECTION,dir);
 		},
 
 		sendText: function(str){
-			this.sendToServer(this.TEXT,str);
+			this.sendToServer(TEXT,str);
 		},
 
 		setReady: function(){
-			this.sendToServer(this.READY, {});
+			this.sendToServer(READY, {});
 		},
 
 		setName: function(){
-			this.sendToServer(this.NAME, {});
+			this.sendToServer(NAME, {});
 		},
 
 		sendSwipe: function(dir){
-			/*var res;
-			res.dir=dir;
-			res.ints=ints;*/
-			this.sendToServer(this.SWIPE,dir);	
+			this.sendToServer(SWIPE,dir);	
 		},
 
 		draw: function(elem) {},
 
 		handleInput: function() {},
 
-		addWidget: function(){}
+		addWidget: function(elem){
+
+		}
 	})
 
 	//onReceiveText(txt);
@@ -145,24 +180,25 @@
     		var that = this;
 
     		$('up_key').on('click',function(){
-    			that.sendDirection(that.UP);
+    			that.sendDirection(UP);
     		});
 
     		$('right_key').on('click',function(){
-    			that.sendDirection(that.RIGHT);
+    			that.sendDirection(RIGHT);
     		});
 
     		$('down_key').on('click',function(){
-    			that.sendDirection(that.DOWN);
+    			that.sendDirection(DOWN);
     		});
 
     		$('left_key').on('click',function(){
-    			that.sendDirection(that.LEFT);
+    			that.sendDirection(LEFT);
     		});
 
     	},
 
     	addWidget: function(elem){
+
     		var that = this;
 
     		var li = new Element('li');
@@ -174,7 +210,7 @@
     			$('widget').update('');
     			that.draw('#widget');
     		})
-
+    		
     	}
 
 	})
@@ -248,16 +284,16 @@
 				new Swipeable(swipeMe);
 				
 				swipeMe.observe("swipe:up", function () {
-					that.sendSwipe(that.UP);
+					that.sendSwipe(UP);
 				;});
 				swipeMe.observe("swipe:down", function () {
-					that.sendSwipe(that.DOWN);
+					that.sendSwipe(DOWN);
 				});
 				swipeMe.observe("swipe:left", function () {
-					that.sendSwipe(that.LEFT);
+					that.sendSwipe(LEFT);
 				});
 				swipeMe.observe("swipe:right", function () {
-					that.sendSwipe(that.RIGHT);
+					that.sendSwipe(RIGHT);
 				});
 
 		},
@@ -281,17 +317,11 @@
 
 
 
-Event.observe(window, 'load', function() {
 
-	var socket = io.connect('http://172.30.10.172:8080');
+	window.Widget = {start: start,
+					Joystick: Joystick,
+					inputText: inputText,
+					Swipe: Swipe,
+					ready: ready};
 
-	arrows = new Joystick('#widget',"dsfsddfs", socket);
-	
-	text = new inputText('#widget',"dsfsddfs", socket);
-
-	swipe = new Swipe('#widget', "dsfsddfs", socket);
-	
-	socket.emit('CLIENT_READY',{ id: "dsfsddfs"});
-	
-});
-
+}(window,document));

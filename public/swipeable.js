@@ -5,7 +5,7 @@ window.Swipeable = Class.create({
 		// allow id or DOM object
 		this.el = $(el); 
 		
-		this.minLength = 70; // allow options object to be passed
+		this.minLength = 30; // allow options object to be passed
 			
 		this.startX = null;
 		this.startY = null;
