@@ -2,7 +2,7 @@ var game;
 
 
 
-var socket = io.connect('http://172.30.3.84:8080');
+var socket = io.connect('http://192.168.1.67:8080');
 
 socket.on('connect', function(){
 	console.log('SERVER READY');
@@ -14,17 +14,9 @@ socket.on('connect', function(){
 
 socket.on('NEW_PLAYER', function(data){
 	
-	
-
-	
 	game.setPlayers(data.player);
 	console.log("MY NAME: " + data.player);
 
-	/*$('code').remove();
-	$('game').setStyle({
-	  display: 'block'
-	});*/
-	
 });
 
 socket.on('asd', function(data){

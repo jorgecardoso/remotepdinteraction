@@ -56,22 +56,26 @@ app.get('/panel', function (req, res) {
 
 		socket.on('SET_NAME', function(data){
 			num_players = game.clients(data.id).length;
-			console.log("PLAYERS: " + num_players);
-			data.name= num_players;
+			console.log("PLAYERS: " + num_players);	
 
-			_players.push(data.name);
-
-			socket.emit('NAME',{ names: data.name });
-			console.log("My name: "+ data.name);
+			socket.on('TEXT', function(x){
+				console.log('O MEU NOME:' + x.cmd);
+				//data.name = x.cmd;
+				_players.push(x.cmd);
+				console.log(_players);
+				socket.emit('NAME',{ names: x.cmd });
+				console.log("My name: "+ x.cmd);
+			})
+			
 
 		})
 
 		socket.on('CLIENT_READY', function(data){
 
-			console.log('CLIENT_READY' + data.cmd);
+			console.log('CLIENT_READY' + data.name);
 			socket.join(data.id);
-			num_players =game.clients(data.id).length;
-			console.log(_players); 
+			num_players = game.clients(data.id).length;
+			console.log("NUM: " + _players); 
 			//if(num_players==FULL_ROOM+1 && game_masters[data.id]!=undefined)
 				
 				game.in(data.id).emit('NEW_PLAYER',{ player: data.name});
@@ -85,7 +89,9 @@ app.get('/panel', function (req, res) {
     		io.sockets.socket(game_masters[data.id]).emit("asd",data);
     	});
 
-    	socket.on('TEXT', function(x){console.log("Copyright by MARIA: "+x)});
+    	socket.on('TEXT', function(x){
+    		io.sockets.socket(game_masters[x.id]).emit("lol",x);	
+    	});
 
     	socket.on('SWIPE', function(data){
     		io.sockets.socket(game_masters[data.id]).emit("asd",data);

@@ -6,7 +6,7 @@ var snakeGame = function(el){
   var snakes = [];
   var can_move = [];
   var food = [];
-  var players = [];
+  var players = {};
 
   game = {
     
@@ -167,7 +167,7 @@ var Snake = Class.create({
   checkGrowth: function() {
     
   for(var i = 0; i < food.length; i++){
-    if (Math.abs(this.x-food[i].x)<=3 && Math.abs(this.y-food[i].y)<=3){ 
+    if (Math.abs(this.x-food[i].x)<=5 && Math.abs(this.y-food[i].y)<=5){ 
       this.score++;
       eat = true;
       if (this.score % 5 == 0 && game.fps < 60) {
@@ -260,8 +260,10 @@ return {
   setPlayers: function(name){
 
     player = name;
-    players.push(player);
+    console.log("me: " + player);
     snakes.push(new Snake(snakes.length+1, snakes.length+2));
+    players[player] = snakes[snakes.length];
+    console.log("PLAYERS: " + players[player].id);
     can_move.push(false);
     food.push(new Food(snakes[snakes.length-1]));
     food[snakes.length-1].set();
@@ -275,7 +277,7 @@ return {
    if(game.over)
       game.start();
     else {
-      snakes[player-1].direction=dir;
+      snakes[players[player]].direction=dir;
       can_move[player-1] = true;
     }
 },

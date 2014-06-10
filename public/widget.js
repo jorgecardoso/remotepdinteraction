@@ -12,7 +12,8 @@
 	TEXT = "TEXT",
 	SWIPE = "SWIPE",
 	NAME = "SET_NAME",
-	READY = "CLIENT_READY";
+	READY = "CLIENT_READY",
+	your_name = null;
 	//widgetbar,
 	//DEFAULT_OPTIONS = {
 		//widgetbar : true
@@ -35,18 +36,41 @@
 		console.log(options)
 		//widgetbar = options.widgetbar;
 		socket = io.connect(url);
+		
+	
 	}
 
 	function ready(){
 
-		socket.emit('CLIENT_READY',{ id: "dsfsddfs"});
+		socket.emit(NAME, {});
+		socket.on('NAME', function(data){
+			your_name = data.names;
+			console.log("MUDAR: " + your_name);
+
+			socket.emit('CLIENT_READY',{ id: "dsfsddfs", name: data.names});
+		});
+
+		
 	} 
+
+	function drawBar(elem){
+		var ul = new Element('ul', {'id': 'my_widgets'});
+		$(elem).appendChild(ul);
+	}
+
+	function setName(){
+		/*socket.on('NAME', function(data){
+			your_name = data.names;
+			console.log("MUDAR: " + your_name);
+		});*/
+	}
 
 	var Widget = Class.create({
 		url: null,
 		socket: null,
-		_name: null,
+		//name: null,
 		id: null,
+		
 
 		handleResponse: function(){
 
@@ -63,10 +87,7 @@
 				//onReceiveText(data);
 			});
 
-			socket.on('NAME', function(data){
-				name = data.names;
-				//alert(name);
-			});
+			
 		},
 
 		
@@ -78,16 +99,9 @@
 			socket = socket;
 
 			this.id=id;
-			//socket.emit('load');
-			/*if(widgetbar)
-				this.addWidget('#my_widgets')*/
-				console.log("adiciona");
-			this.addWidget('#my_widgets');
-			this.handleResponse();
-			this.setName();
 			
-			//this.draw(elem);
-			//this.handleInput();
+			this.handleResponse();
+			//this.setName();
 
 		},
 
@@ -95,8 +109,8 @@
 		sendToServer: function(key, obj){
 			var payload = {};
 			payload.id=this.id;
-			payload.name=name;
 			payload.cmd=obj;
+			//this.your_name = payload.cmd;
 			socket.emit(key,payload);
 			console.log("emit "+key+" "+ payload.cmd);
 		},
@@ -200,15 +214,20 @@
     	addWidget: function(elem){
 
     		var that = this;
-
-    		var li = new Element('li');
+			var li = new Element('li');
     		$$(elem)[0].appendChild(li);
     		var a = new Element('a', {'id': 'joystick', 'class': 'icon'});
     		li.appendChild(a);
+    		
 
     		$('joystick').on('click',function(){
-    			$('widget').update('');
-    			that.draw('#widget');
+    			if (your_name==null){
+    				alert("Please define your name!");
+    			}
+    			else {
+    				$('widget').update('');
+    				that.draw('#widget'); 
+    			}
     		})
     		
     	}
@@ -308,20 +327,25 @@
     		li.appendChild(a);
 
     		$("swipe_button").on('click', function(){
-    			$('widget').update('');
-    			that.draw('#widget');
+    			if (your_name==null){
+    				alert("Please define your name!");
+    			}
+    			else {
+    				$('widget').update('');
+    				that.draw('#widget'); 
+    			}
     		});
     	}
 
 	});
 
 
-
-
 	window.Widget = {start: start,
+					drawBar: drawBar,
 					Joystick: Joystick,
 					inputText: inputText,
 					Swipe: Swipe,
-					ready: ready};
+					ready: ready,
+					setName: setName};
 
 }(window,document));
