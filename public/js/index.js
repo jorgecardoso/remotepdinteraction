@@ -2,7 +2,7 @@ var game;
 
 
 
-var socket = io.connect('http://192.168.1.67:8080');
+var socket = io.connect('http://localhost:8080');
 
 socket.on('connect', function(){
 	console.log('SERVER READY');
@@ -16,6 +16,7 @@ socket.on('NEW_PLAYER', function(data){
 	
 	game.setPlayers(data.player);
 	console.log("MY NAME: " + data.player);
+	alertify.log(data.player + " is ready!", "success", 10000);
 
 });
 

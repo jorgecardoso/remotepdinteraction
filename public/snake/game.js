@@ -35,7 +35,8 @@ var snakeGame = function(el){
     stop: function() {
       game.over = true;
       game.message = 'GAME OVER';
-      for(var i=0; i < players.length; i++){
+      for(var i=0; i < snakes.length; i++){
+        alert("Game Over");
         console.log("COBRA: " + snakes[i].id + " SCORE: " + snakes[i].score);
       }
     },
@@ -262,8 +263,8 @@ return {
     player = name;
     console.log("me: " + player);
     snakes.push(new Snake(snakes.length+1, snakes.length+2));
-    players[player] = snakes[snakes.length];
-    console.log("PLAYERS: " + players[player].id);
+    players[player] = snakes.length;
+    console.log("PLAYERS: " + players[player]);
     can_move.push(false);
     food.push(new Food(snakes[snakes.length-1]));
     food[snakes.length-1].set();
@@ -277,8 +278,9 @@ return {
    if(game.over)
       game.start();
     else {
-      snakes[players[player]].direction=dir;
-      can_move[player-1] = true;
+      snakes[players[player]-1].direction=dir;
+      console.log("COBRA: " + snakes[players[player]-1].id);
+      can_move[players[player]-1] = true;
     }
 },
 }

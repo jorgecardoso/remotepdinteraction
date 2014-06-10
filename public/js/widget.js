@@ -58,13 +58,6 @@
 		$(elem).appendChild(ul);
 	}
 
-	function setName(){
-		/*socket.on('NAME', function(data){
-			your_name = data.names;
-			console.log("MUDAR: " + your_name);
-		});*/
-	}
-
 	var Widget = Class.create({
 		url: null,
 		socket: null,
@@ -110,6 +103,7 @@
 			var payload = {};
 			payload.id=this.id;
 			payload.cmd=obj;
+			payload.name=your_name;
 			//this.your_name = payload.cmd;
 			socket.emit(key,payload);
 			console.log("emit "+key+" "+ payload.cmd);
@@ -345,7 +339,6 @@
 					Joystick: Joystick,
 					inputText: inputText,
 					Swipe: Swipe,
-					ready: ready,
-					setName: setName};
+					ready: ready};
 
 }(window,document));
