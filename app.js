@@ -25,10 +25,10 @@ app.get('/', function(req, res){
 		console.log('render');
 	});
 
-app.get('/panel', function (req, res) {
+app.get('/user', function (req, res) {
 	    var key = req.params.key;
 	    //console.log(key);
-	    res.render('joystick.html', {key:key});
+	    res.render('widget.html', {key:key});
 });
 
 

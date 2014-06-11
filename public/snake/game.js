@@ -36,7 +36,7 @@ var snakeGame = function(el){
       game.over = true;
       game.message = 'GAME OVER';
       for(var i=0; i < snakes.length; i++){
-        alert("Game Over");
+        //alert("Game Over");
         console.log("COBRA: " + snakes[i].id + " SCORE: " + snakes[i].score);
       }
     },
