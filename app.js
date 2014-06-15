@@ -84,7 +84,7 @@ app.get('/user', function (req, res) {
 		})
 
     	socket.on('DIRECTION', function(data){
-    		console.log(data);
+    		console.log("esquerda: " + data.cmd);
 
     		io.sockets.socket(game_masters[data.id]).emit("asd",data);
     	});

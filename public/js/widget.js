@@ -15,7 +15,7 @@
 	  * @property LEFT 
 	  * @type String
 	  */
-	LEFT = "L",
+	//LEFT = "L",
 
 	/**
 	  * @property RIGHT
@@ -69,31 +69,41 @@
 	  * @property your_name
 	  * @type String
  	  */
-	your_name = null;
-	//widgetbar,
-	//DEFAULT_OPTIONS = {
-		//widgetbar : true
-	//};	
+	your_name = null,
 
-	/*function extend(a, b){
-	    for(var key in b)
-	        if(b.hasOwnProperty(key))
-	            a[key] = b[key];
-	    return a;
-	}*/
+	widgetbar,
+	//widgetbar,
+	DEFAULT_OPTIONS = {
+		widgetbar : true,
+		LEFT : "L",
+		RIGHT : "R",
+
+		/**
+		  * @property UP
+		  * @type String
+	 	  */
+		UP : "U",
+
+		/**
+		  * @property DOWN
+		  * @type String
+	 	  */
+		DOWN : "D"
+	};	
 
 	/** 
 	  * @method start
 	  * @param url {String} html element
 	  */
-	function start(url){
+	function start(url, options){
 		//var port = url.match(/:(\d+)/);
 		//url += port ? "" : DEFAULT_PORT;
-		console.log(options)
+		console.log("BEFORE:" + DEFAULT_OPTIONS.widgetbar);
 		//console.log(DEFAULT_OPTIONS)
 
-		//Object.extend(DEFAULT_OPTIONS, options);
-		console.log(options)
+		DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
+		console.log("OPTIONS: " + options.widgetbar);
+		console.log("AFTER: " + DEFAULT_OPTIONS.widgetbar);
 		//widgetbar = options.widgetbar;
 		socket = io.connect(url);
 		
@@ -196,6 +206,10 @@
 			console.log("emit "+key+" "+ payload.cmd);
 		},
 
+		createCommand: function(myFunc){
+			myFunc(this.sendToServer);
+		},
+
 		/** Send to the server the direction of joystick
 		  * @method sendDirection
 		  * @param dir {String} joystick direction
@@ -237,11 +251,16 @@
 		  */
 		addWidget: function(elem){
 
+		},
+
+		setOptions: function(options){
+
 		}
 	})
 
 	
-	/** Allows users to create a joystick widget
+	/** 
+	  * Allows users to create a joystick widget
       * @class Joystick
       * @constructor
       * @extends Widget
@@ -309,8 +328,15 @@
     		});
 
     		$('left_key').on('click',function(){
-    			that.sendDirection(LEFT);
+    			that.sendDirection(DEFAULT_OPTIONS.LEFT);
     		});
+
+    		/*$('left_key').on('click',function(){
+    			that.createCommand(function(send){
+    				send("DIRECTION","coiso");
+    			});
+    		});*/
+
 
     	},
 
@@ -318,26 +344,27 @@
 		  * @method addWidget
 		  * @param elem {String} html element
 		  */
-    	addWidget: function(elem){
+    	addWidget: function(elem, options){
+    	DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
 
-    		var that = this;
-			var li = new Element('li');
-    		$$(elem)[0].appendChild(li);
-    		var a = new Element('a', {'id': 'joystick', 'class': 'icon'});
-    		li.appendChild(a);
-    		
+	    		var that = this;
+				var li = new Element('li');
+	    		$$(elem)[0].appendChild(li);
+	    		var a = new Element('a', {'id': 'joystick', 'class': 'icon'});
+	    		li.appendChild(a);
+	    		
 
-    		$('joystick').on('click',function(){
-    			if (your_name==null){
-    				alert("Please define your name!");
-    			}
-    			else {
-    				$('widget').update('');
-    				that.draw('#widget'); 
-    			}
-    		})
-    		
-    	}
+	    		$('joystick').on('click',function(){
+	    			if (your_name==null){
+	    				alert("Please define your name!");
+	    			}
+	    			else {
+	    				$('widget').update('');
+	    				that.draw('#widget'); 
+	    			}
+	    		})
+	    		
+	    	} 
 
 	})
 	
