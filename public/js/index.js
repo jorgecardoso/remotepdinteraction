@@ -12,18 +12,26 @@ socket.on('connect', function(){
 	
 });
 
-socket.on('NEW_PLAYER', function(data){
+socket.on('NEW_USER', function(data){
 	
 	game.setPlayers(data.player);
 	console.log("MY NAME: " + data.player);
 	alertify.log(data.player + " is ready!", "success", 10000);
+	var user = new Element('li', { 'id': data.player});
+	$('all_users').appendChild(user);
+	user.update(data.player);
 
 });
 
 socket.on('asd', function(data){
 	console.log("Jogador: " + data.name + " comando: " + data.cmd);
-	console.log(game);
 	
 	game.setDirection(data.name, data.cmd);
+	$(data.name).update(data.name + ': ' + game.getScores(data.name));
+	console.log("COLOR:" + game.getColor(data.name));
+	console.log("MY SCORE: " + game.getScores(data.name));
+	$(data.name).setStyle({
+		backgroundColor: game.getColor(data.name)
+	});
 	
 });

@@ -78,7 +78,7 @@ app.get('/user', function (req, res) {
 			console.log("NUM: " + _players); 
 			//if(num_players==FULL_ROOM+1 && game_masters[data.id]!=undefined)
 				
-				game.in(data.id).emit('NEW_PLAYER',{ player: data.name});
+				game.in(data.id).emit('NEW_USER',{ player: data.name});
 				console.log("Numero " + num_players);
 
 		})

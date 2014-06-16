@@ -26,17 +26,12 @@ var snakeGame = function(el){
         snakes[i].init(i+2);
         can_move[i]=false;
       }
-      /*snakes = [];
-      can_move = [];
-      food = [];*/
-      
     },
     
     stop: function() {
       game.over = true;
       game.message = 'GAME OVER';
       for(var i=0; i < snakes.length; i++){
-        //alert("Game Over");
         console.log("COBRA: " + snakes[i].id + " SCORE: " + snakes[i].score);
       }
     },
@@ -236,7 +231,6 @@ return {
         function loop() {
           if (game.over == false ) {
             game.resetCanvas();
-            //game.drawScore();
             
             for(var i = 0; i < snakes.length; i++){
               console.log("NUM_COBRAS " + snakes[i]);
@@ -261,10 +255,8 @@ return {
   setPlayers: function(name){
 
     player = name;
-    console.log("me: " + player);
     snakes.push(new Snake(snakes.length+1, snakes.length+2));
     players[player] = snakes.length;
-    console.log("PLAYERS: " + players[player]);
     can_move.push(false);
     food.push(new Food(snakes[snakes.length-1]));
     food[snakes.length-1].set();
@@ -282,7 +274,24 @@ return {
       console.log("COBRA: " + snakes[players[player]-1].id);
       can_move[players[player]-1] = true;
     }
-},
+  },
+
+  getScores: function(player){
+    var score;
+
+    score = snakes[players[player]-1].score;
+
+    return score;
+
+  },
+
+  getColor: function(player){
+    var my_color;
+
+    my_color = snakes[players[player]-1].color;
+
+    return my_color;
+  },
 }
 
 

@@ -21,19 +21,19 @@
 	  * @property RIGHT
 	  * @type String
  	  */
-	RIGHT = "R",
+	//RIGHT,
 
 	/**
 	  * @property UP
 	  * @type String
  	  */
-	UP = "U",
+	//UP,
 
 	/**
 	  * @property DOWN
 	  * @type String
  	  */
-	DOWN = "D",
+	//DOWN,
 
 	/**
 	  * @property DIRECTION
@@ -98,13 +98,8 @@
 	function start(url, options){
 		//var port = url.match(/:(\d+)/);
 		//url += port ? "" : DEFAULT_PORT;
-		console.log("BEFORE:" + DEFAULT_OPTIONS.widgetbar);
-		//console.log(DEFAULT_OPTIONS)
-
+	
 		DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
-		console.log("OPTIONS: " + options.widgetbar);
-		console.log("AFTER: " + DEFAULT_OPTIONS.widgetbar);
-		//widgetbar = options.widgetbar;
 		socket = io.connect(url);
 		
 	
@@ -135,11 +130,18 @@
 		$(elem).appendChild(ul);
 	}
 
+	function setOptions(options){
+
+		DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
+
+	}
+
 	/** 
       * @class Widget
       * @constructor
  	  */
 	var Widget = Class.create({
+		
 		/**
 	      * @property url
 	      * @type String
@@ -316,26 +318,20 @@
     		var that = this;
 
     		$('up_key').on('click',function(){
-    			that.sendDirection(UP);
+    			that.sendDirection(DEFAULT_OPTIONS.UP);
     		});
 
     		$('right_key').on('click',function(){
-    			that.sendDirection(RIGHT);
+    			that.sendDirection(DEFAULT_OPTIONS.RIGHT);
     		});
 
     		$('down_key').on('click',function(){
-    			that.sendDirection(DOWN);
+    			that.sendDirection(DEFAULT_OPTIONS.DOWN);
     		});
 
     		$('left_key').on('click',function(){
     			that.sendDirection(DEFAULT_OPTIONS.LEFT);
     		});
-
-    		/*$('left_key').on('click',function(){
-    			that.createCommand(function(send){
-    				send("DIRECTION","coiso");
-    			});
-    		});*/
 
 
     	},
@@ -501,6 +497,7 @@
 
 	window.Widget = {start: start,
 					drawBar: drawBar,
+					setOptions: setOptions,
 					Joystick: Joystick,
 					inputText: inputText,
 					Swipe: Swipe,

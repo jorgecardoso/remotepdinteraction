@@ -43,6 +43,19 @@ header {
 
 }
 
+#users {
+  margin: 0 auto;
+  width: 640px;
+  height: 30px; 
+}
+
+#users li {
+  display: inline-block;
+  height: 59px;
+  line-height: 59px;
+  background-color: #000;
+}
+
 #game,
 #panel {
 	float: left;
