@@ -260,8 +260,7 @@ return {
     can_move.push(false);
     food.push(new Food(snakes[snakes.length-1]));
     food[snakes.length-1].set();
-
-   
+    console.log("laka:" + snakes[1]);
 
   },
 

@@ -23,15 +23,19 @@ socket.on('NEW_USER', function(data){
 
 });
 
+socket.on('SET_USER', function(data){
+	
+	$(data.player).update(data.player + ': ' + game.getScores(data.player));
+	$(data.player).setStyle({
+		backgroundColor: game.getColor(data.player)
+	});
+
+});
+
 socket.on('asd', function(data){
 	console.log("Jogador: " + data.name + " comando: " + data.cmd);
 	
 	game.setDirection(data.name, data.cmd);
-	$(data.name).update(data.name + ': ' + game.getScores(data.name));
-	console.log("COLOR:" + game.getColor(data.name));
-	console.log("MY SCORE: " + game.getScores(data.name));
-	$(data.name).setStyle({
-		backgroundColor: game.getColor(data.name)
-	});
+	
 	
 });
