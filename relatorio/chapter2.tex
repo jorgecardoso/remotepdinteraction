@@ -33,7 +33,7 @@ Tal como já foi referido anteriormente no final do desenvolvimento deste projet
 
 No âmbito das interações públicas é importante salientar o conceito de privacidade, deste modo o utilizador deve ter controlo sobre a sua informação e poder decidir que informação e quando esta deve ser mostrada em determinado ecrã ~\cite{Davies2012b}. Como prova de conceito, Nigel Davies et al.~\cite{Davies2012b}, desenvolveram e implementaram \textit{Tacita}, representado na figura ~\ref{fig:tacita}, um sistema de personalização \textit{privacy-aware}, que suporta interações anónimas com ecrãs em locais abertos. Com \textit{Tacita} em vez de ter de confiar num número ilimitado de ecrãs, participantes confiam em fornecedores de aplicações, como \textit{Google} e \textit{Facebook}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\columnwidth]{tacita.png}
 \caption[Sistema \textit{Tacita}] {Sistema \textit{Tacita} ~\cite{Davies2012b}}
@@ -51,7 +51,7 @@ Uma conexão usando Bluetooth também pode ser intuitiva, contudo por vezes requ
 As ligações através de QR code, email, inserção de código ou link exigem que exista uma ligação à Internet para que o transeunte possa usufruir da aplicação. 
 Gehring et al.~\cite{Gehring}, fazem referência ao protocolo \textit{TUIO}, esquema na figura ~\ref{fig:TUIO}, para enviar a informação do dispositivo para o ecrã. Inicialmente o ecrã precisa de ser detetado e identificado, depois o dispositivo deteta automaticamente o ecrã em direto, se os dois estiverem conectados na mesma rede. Após isto, o reconhecimento do QR code existente no local permite a emparelhar os dois dispositivos.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\columnwidth]{TUIO.png}
 \caption[textit{TUIO} Protocolo] {\textit{TUIO} Protocolo ~\cite{Gehring}}
@@ -72,7 +72,7 @@ Como poderia uma aplicação, integrar a rede de um ecrã público? Clinch et al
 capacidades e aplicações disponíveis.
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\columnwidth]{arqui.png}
 \caption[Componentes da Arquitetura] {Componentes da Arquitetura~\cite{Gehring}}
@@ -94,7 +94,7 @@ De modo a permitir o uso de vários utilizadores ao mesmo tempo, uma conexão at
 \begin{itemize}
 \item \textbf{Poppet}~\cite{Vajk2008b} - é uma \textit{framework} que utiliza os sensores do telemóvel, como câmaras, acelarometros, NFC, que podem ser ligados aos jogos, para correrem nos ecrãs públicos. Foi desenvolvido para um telemóvel em específico, Nokia 5500, contudo é suficientemente genérico para funcionar corretamente com uma larga gama de telemóveis usando o bluetooth como meio de ligação. O reconhecimento dos gestos exige um estudo cuidado, pois a variação de como o utilizador manipula o dispositivo pode produzir anomalias nos outputs e não existia método de obter a posição física do mesmo no espaço real, como por exemplo acontece no comando da consola \textit{Wii}(figura~\ref{fig:poppet}).
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\columnwidth]{poppet.png}
 \caption[Sistema \textit{Poppet}] {Sistema \textit{Poppet}~\cite{Vajk2008b}}
@@ -106,7 +106,7 @@ De modo a permitir o uso de vários utilizadores ao mesmo tempo, uma conexão at
 
 \item \textbf{Super Sync Sports}\footnote{http://www.chrome.com/supersyncsports/\#/en-GB/m/tfejb} -  uma aplicação web, desenvolvida pela Google que permite ao utilizador jogar se este estabelecer uma ligação ao computador através do seu dispositivo móvel. O objetivo será assumir o papel de um desportista e terminar as diversas provas. São usadas \textit{websockets} para permitir a colaboração em tempo real, no seu desenvolvimento foi também usado HTML e CSS(figura~\ref{fig:chrome}).
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\columnwidth]{chrome.png}
 \caption {Super Sync Sports}
@@ -115,7 +115,7 @@ De modo a permitir o uso de vários utilizadores ao mesmo tempo, uma conexão at
 
 \item \textbf{Stripenight Racer}\footnote{http://www.stripenight.com/racer/} - é também um pequeno jogo, que simula uma corrida de automóveis e o utilizador tem a autonomia de controlar o veiculo com o movimento do seu dispositivo, usa a mesma tecnologia para a ligação que a aplicação anterior(figura ~\ref{fig:racer}).
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\columnwidth]{race.png}
 \caption {Stripenight Racer}
