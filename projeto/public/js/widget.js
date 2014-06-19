@@ -174,17 +174,11 @@
 		handleResponse: function(){
 
 			
-			socket.on('connect', function(data){
+			/*socket.on('connect', function(data){
 				//socket.emit('i am client', {data: 'foo!'});
 				console.log("estou aqui");
 				//onReceiveText(data);
-			});
-
-			socket.on('START', function(data){
-				//socket.emit('i am client', {data: 'foo!'});
-				//alert("START " + data.players);
-				//onReceiveText(data);
-			});
+			});*/
 
 			
 		},
