@@ -1,0 +1,659 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"praia",
+				"praia"
+			],
+			[
+				"p",
+				"praia"
+			],
+			[
+				"text",
+				"texto"
+			],
+			[
+				"texto",
+				"texto1"
+			],
+			[
+				"r",
+				"replaceWith"
+			],
+			[
+				"col",
+				"col1"
+			],
+			[
+				"te",
+				"texto"
+			],
+			[
+				"re",
+				"replaced"
+			],
+			[
+				"txt",
+				"text-align"
+			],
+			[
+				"bac",
+				"background-repeat"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"m",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"fon",
+				"font-family"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "chapter2.tex",
+			"settings":
+			{
+				"buffer_size": 15259,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "chapter1.tex",
+			"settings":
+			{
+				"buffer_size": 4211,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "myrefs.bib",
+			"settings":
+			{
+				"buffer_size": 6753,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pdis.bbl",
+			"settings":
+			{
+				"buffer_size": 2994,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "chapter4.tex",
+			"settings":
+			{
+				"buffer_size": 1652,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pdis.tex",
+			"settings":
+			{
+				"buffer_size": 5551,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "chapter3.tex",
+			"settings":
+			{
+				"buffer_size": 3143,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "abbrevs_en.tex",
+			"settings":
+			{
+				"buffer_size": 234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "feupteses.sty",
+			"settings":
+			{
+				"buffer_size": 13227,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "abbrevs.tex",
+			"settings":
+			{
+				"buffer_size": 319,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "abstract.tex",
+			"settings":
+			{
+				"buffer_size": 975,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "quote.aux",
+			"settings":
+			{
+				"buffer_size": 736,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
+	"command_palette":
+	{
+		"height": 173.0,
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/mieic.tex",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/chapter5.tex",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/chapter5.aux",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/pdis.tex",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/chapter4.tex",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/chapter2.tex",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/chapter1.tex",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/report.sublime-workspace",
+		"/C/Users/mjoaob/Desktop/Tese/1_Relatorio/3_TemplRelatLaTex (2)/mieic-distrib/chapter1.tex",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/lva3/lva3/webl/Webl/fnac.xml",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/lva3/lva3/webl/Webl/fnac.webl",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/gsmshop.webl",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/lva3/lva3/webl/Webl/gsmshop.xml",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/saturn.webl",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/fnac.webl",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/Javascript_1.html",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/lvaue2_BarreiraMaria/jquery_1_BarreiraMaria.html",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/jquery_maria_3.html",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/jquery_maria_2.html",
+		"/C/Users/mjoaob/Desktop/ERASMUS/Lectures/Web Data/jquery_maria.html",
+		"/C/Users/mjoaob/Desktop/MyWeb/my.html",
+		"/C/Users/mjoaob/Desktop/MyWeb/style.css",
+		"/C/Users/mjoaob/Desktop/TBDA3_DTD",
+		"/C/Users/mjoaob/Desktop/g-patientLocal.sql",
+		"/C/Sites/projects/railsgirls/app/assets/javascripts/application.js",
+		"/C/Sites/projects/railsgirls/Gemfile",
+		"/C/Sites/projects/railsgirls/app/views/layouts/application.html.erb",
+		"/C/Sites/projects/railsgirls/app/assets/stylesheets/application.css",
+		"/C/Sites/projects/railsgirls/app/views/ideas/index.html.erb",
+		"/C/Sites/projects/railsgirls/app/models/idea.rb",
+		"/C/Sites/projects/railsgirls/app/views/ideas/_form.html.erb",
+		"/C/Sites/projects/railsgirls/app/assets/stylesheets/ideas.css.scss",
+		"/C/Sites/projects/railsgirls/app/views/ideas/new.html.erb",
+		"/C/Sites/projects/railsgirls/config/routes.rb",
+		"/C/Sites/projects/railsgirls/app/assets/javascripts/ideas.js",
+		"/C/Sites/projects/railsgirls/app/views/ideas/show.html.erb",
+		"/C/Users/mjoaob/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"chapter4",
+			"shadow"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "chapter2.tex",
+					"settings":
+					{
+						"buffer_size": 15259,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15097,
+								15097
+							]
+						],
+						"settings":
+						{
+							"spell_check": true,
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2880.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "chapter1.tex",
+					"settings":
+					{
+						"buffer_size": 4211,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4210,
+								4210
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "myrefs.bib",
+					"settings":
+					{
+						"buffer_size": 6753,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6394,
+								6403
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/Bibtex.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1785.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "pdis.bbl",
+					"settings":
+					{
+						"buffer_size": 2994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								31,
+								31
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "chapter4.tex",
+					"settings":
+					{
+						"buffer_size": 1652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								879,
+								879
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "pdis.tex",
+					"settings":
+					{
+						"buffer_size": 5551,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5393,
+								5393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 630.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "chapter3.tex",
+					"settings":
+					{
+						"buffer_size": 3143,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2992,
+								2992
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "abbrevs_en.tex",
+					"settings":
+					{
+						"buffer_size": 234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								202,
+								202
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "feupteses.sty",
+					"settings":
+					{
+						"buffer_size": 13227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/TeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "abbrevs.tex",
+					"settings":
+					{
+						"buffer_size": 319,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								276,
+								276
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "abstract.tex",
+					"settings":
+					{
+						"buffer_size": 975,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								558,
+								558
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "quote.aux",
+					"settings":
+					{
+						"buffer_size": 736,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 209.0,
+	"status_bar_visible": true
+}
