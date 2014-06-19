@@ -42,13 +42,10 @@ app.get('/user', function (req, res) {
 
     
 
-		socket.on('SERVER_READY', function(data){
-			console.log('SERVER_READY');
+		socket.on('APP_READY', function(data){
 			socket.join(data.id);
 			game_masters[data.id] = socket.id; 
-			
-			
-			
+
 			if(game.clients(data.id).length==FULL_ROOM+1)
 				game.in(data.id).emit('NEW_USER', {});
 				

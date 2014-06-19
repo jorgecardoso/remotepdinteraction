@@ -5,123 +5,127 @@
 ;(function(window, document) {
 
 	var socket,
+	
 	/**	
+	  * Define the used port
+	  *
 	  * @property DEFAULT_PORT
 	  * @type String
+	  * @defaul 8080
+	  *
  	  */
 	DEFAULT_PORT=8080,
 	
-	/** 
-	  * @property LEFT 
-	  * @type String
-	  */
-	//LEFT = "L",
 
 	/**
-	  * @property RIGHT
-	  * @type String
- 	  */
-	//RIGHT,
-
-	/**
-	  * @property UP
-	  * @type String
- 	  */
-	//UP,
-
-	/**
-	  * @property DOWN
-	  * @type String
- 	  */
-	//DOWN,
-
-	/**
+	  * 
 	  * @property DIRECTION
 	  * @type String
+	  * @default "DIRECTION"
+	  *
  	  */
 	DIRECTION = "DIRECTION",
 
 	/**
 	  * @property TEXT
 	  * @type String
+	  * @default "TEXT"
  	  */
 	TEXT = "TEXT",
 
 	/**
 	  * @property SWIPE
 	  * @type String
+	  * @default "SWIPE"
  	  */
 	SWIPE = "SWIPE",
 
 	/**
 	  * @property NAME
 	  * @type String
+	  * @default "SET_NAME"
  	  */
-	NAME = "SET_NAME",
+	SET_NAME = "SET_NAME",
 
 	/**
 	  * @property READY
 	  * @type String
+	  * @default "CLIENT_READY"
  	  */
 	READY = "CLIENT_READY",
 
 	/**
-	  * @property your_name
+	  * Define the user's name  
+	  * @property user_name
 	  * @type String
  	  */
-	your_name = null,
+	user_name = null,
 
-	widgetbar,
-	//widgetbar,
+	
 	DEFAULT_OPTIONS = {
 		widgetbar : true,
+		
+		/**
+		  * @property LEFT
+		  * @type String
+		  * @default "L"
+	 	  */
 		LEFT : "L",
+
+		/**
+		  * @property RIGHT
+		  * @type String
+		  * @default R
+	 	  */
 		RIGHT : "R",
 
 		/**
 		  * @property UP
 		  * @type String
+	 	  * @default U
 	 	  */
 		UP : "U",
 
 		/**
 		  * @property DOWN
 		  * @type String
+		  * @default D
 	 	  */
 		DOWN : "D"
 	};	
 
 	/** 
+	  * 
 	  * @method start
 	  * @param url {String} html element
 	  */
 	function start(url, options){
-		//var port = url.match(/:(\d+)/);
-		//url += port ? "" : DEFAULT_PORT;
 	
 		DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
 		socket = io.connect(url);
 		
-	
 	}
 
-	/** Method to change the name 
+	/** Method to define the user's name and 
 	  * @method ready
 	  */
 	function ready(){
 
-		socket.emit(NAME, {});
+		socket.emit(SET_NAME, {});
 		socket.on('NAME', function(data){
-			your_name = data.names;
-			console.log("MUDAR: " + your_name);
+
+			user_name = data.names;
 
 			socket.emit('CLIENT_READY',{ id: "dsfsddfs", name: data.names});
+
 		});
 
 		
 	} 
 
-	/** Method to draw 
+	/** 
+	  * Draw the bar with the widget icons in a html element
+	  *
 	  * @method drawBar
 	  * @param elem {String} html element
 	  */
@@ -130,6 +134,12 @@
 		$(elem).appendChild(ul);
 	}
 
+	/** 
+	  * Method to change de default options
+	  *
+	  * @method drawBar
+	  * @param elem {String} html element
+	  */
 	function setOptions(options){
 
 		DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
@@ -137,17 +147,17 @@
 	}
 
 	/** 
+	  * Abstract class to construct a widget
+	  * 
       * @class Widget
       * @constructor
  	  */
 	var Widget = Class.create({
 		
 		/**
-	      * @property url
-	      * @type String
-	      */
-		url: null,
-		
+		  * @property socket
+		  * @type 
+		  */
 		socket: null,
 		
 		/**
@@ -158,6 +168,7 @@
 		
 
 		/** 
+		  * Method 
 		  * @method handleResponse
 		  */
 		handleResponse: function(){
@@ -179,16 +190,13 @@
 		},
 
 		/** 
+		  * Method that initialize a widget
+		  * 
 		  * @method initialize
 		  * @param elem {String} widget element
 		  * @param id {String} widget id
 		  */
 		initialize: function (elem, id){
-			
-
-			//connect to server
-				
-			//socket = socket;
 
 			this.id=id;
 			
@@ -196,31 +204,32 @@
 		},
 
 		/** 
+		  * Send to the server the widget's controls
 		  * @method sendToServer
+		  * @param key {String} 
+		  * @param obj {}  
 		  */
 		sendToServer: function(key, obj){
 			var payload = {};
 			payload.id=this.id;
 			payload.cmd=obj;
-			payload.name=your_name;
-			//this.your_name = payload.cmd;
+			payload.name=user_name;
+			//this.user_name = payload.cmd;
 			socket.emit(key,payload);
 			console.log("emit "+key+" "+ payload.cmd);
 		},
 
-		createCommand: function(myFunc){
-			myFunc(this.sendToServer);
-		},
-
-		/** Send to the server the direction of joystick
+		/** 
+		  * Send to the server the direction
 		  * @method sendDirection
-		  * @param dir {String} joystick direction
+		  * @param dir {String} widget direction
 		  */
 		sendDirection: function(dir){
 			this.sendToServer(DIRECTION,dir);
 		},
 
-		/** Used to send to the server the text wroten in the text box 
+		/** 
+		  * Used to send to the server the text wroten in the text box 
 		  * @method sendText
 		  * @param str {String} input text
 		  */
@@ -228,26 +237,30 @@
 			this.sendToServer(TEXT,str);
 		},
 
-		/** Used to send to the server the 
+		/** 
+		  * Used to send to the server the swipe's direction
 		  * @method sendSwipe
 		  * @param dir {String} swipe direction
 		  */
 		sendSwipe: function(dir){
-			this.sendToServer(SWIPE,dir);	
+			this.sendToServer(SWIPE, dir);	
 		},
 
-		/** Responsible for draw the widget
+		/** 
+		  * Responsible for draw the widget
 		  * @method draw
 		  * @param elem {String} html element
 		  */
 		draw: function(elem) {},
 
 		/**
+		  * 
 		  * @method handleInput
 		  */
 		handleInput: function() {},
 
-		/** Allow to add a widget
+		/** 
+		  * Allow to add a widget icon 
 		  * @method addWidget
 		  * @param elem {String} html element
 		  */
@@ -262,14 +275,16 @@
 
 	
 	/** 
-	  * Allows users to create a joystick widget
+	  * Class to create a joystick widget
+	  *
       * @class Joystick
       * @constructor
       * @extends Widget
  	  */
 	var Joystick = Class.create(Widget, {
 		
-		/** Responsible to show the widget
+		/** 
+		  * Responsible to show the widget
 		  * @method draw
 		  * @param elem {String} html element
 		  */
@@ -312,6 +327,8 @@
     	},
 
     	/** 
+    	  * Define the events for joystick buttons 
+    	  *
 		  * @method handleInput
 		  */
     	handleInput: function() {
@@ -336,43 +353,49 @@
 
     	},
 
-    	/** Allow to add a widget
+    	/** 
+    	  * Allow to add a widget in a html element
 		  * @method addWidget
 		  * @param elem {String} html element
 		  */
     	addWidget: function(elem, options){
-    	DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
+    		
+    		DEFAULT_OPTIONS = Object.extend(DEFAULT_OPTIONS, options);
 
-	    		var that = this;
-				var li = new Element('li');
-	    		$$(elem)[0].appendChild(li);
-	    		var a = new Element('a', {'id': 'joystick', 'class': 'icon'});
-	    		li.appendChild(a);
-	    		
+    		var that = this;
+			var li = new Element('li');
+    		$$(elem)[0].appendChild(li);
+    		var a = new Element('a', {'id': 'joystick', 'class': 'icon'});
+    		li.appendChild(a);
+    		
 
-	    		$('joystick').on('click',function(){
-	    			if (your_name==null){
-	    				alert("Please define your name!");
-	    			}
-	    			else {
-	    				$('widget').update('');
-	    				that.draw('#widget'); 
-	    			}
-	    		})
+    		$('joystick').on('click',function(){
+    			if (user_name==null){
+    				alert("Please define your name!");
+    			}
+    			else {
+    				$('widget').update('');
+    				that.draw('#widget'); 
+    			}
+    		})
 	    		
-	    	} 
+	    } 
 
 	})
 	
-	/** Allows users to create a joystick widget
+	/** 
+	  * Class to create a input text widget
+	  *
       * @class inputText
       * @constructor
       * @extends Widget
  	  */
 	var inputText = Class.create(Widget, {
 
-		/**
+		/** 
+		  * Responsible to show the widget
 		  * @method draw
+		  * @param elem {String} html element
 		  */
 		draw: function(elem){
 			var div = new Element('div', {'id': 'utext'});
@@ -389,7 +412,9 @@
 			this.handleInput();
 		},
 
-		/**
+		/** 
+    	  * Define the events for input text widget
+    	  *
 		  * @method handleInput
 		  */
 		handleInput: function() {
@@ -405,8 +430,10 @@
 			});
 		},
 
-		/**
+		/** 
+    	  * Allows user to add a widget in a html element
 		  * @method addWidget
+		  * @param elem {String} html element
 		  */
 		addWidget: function(elem){
 
@@ -427,15 +454,19 @@
 	});
 
 	
-	/** Allows users to create a joystick widget
+	/** 
+	  * Class to create a Swipe widget
+	  *
       * @class Swipe
       * @constructor
       * @extends Widget
  	  */
 	var Swipe = Class.create(Widget, {
 
-		/**
+		/** 
+		  * Responsible to show the widget
 		  * @method draw
+		  * @param elem {String} html element
 		  */
 		draw: function(elem){
 			var div = new Element('div', {'id': 'swipe'});
@@ -444,7 +475,9 @@
 			this.handleInput();
 		},
 
-		/**
+		/** 
+    	  * Define the events for swipe widget 
+    	  *
 		  * @method handleInput
 		  */
 		handleInput: function() {
@@ -469,8 +502,10 @@
 
 		},
 
-		/**
+		/** 
+    	  * Allows user to add a widget in a html element
 		  * @method addWidget
+		  * @param elem {String} html element
 		  */
 		addWidget: function(elem){
 
@@ -482,7 +517,7 @@
     		li.appendChild(a);
 
     		$("swipe_button").on('click', function(){
-    			if (your_name==null){
+    			if (user_name==null){
     				alert("Please define your name!");
     			}
     			else {

@@ -30,7 +30,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "widget.js",
-            "line": 408
+            "line": 457
         }
     },
     "classes": {
@@ -45,7 +45,8 @@
             "module": "Widget",
             "namespace": "",
             "file": "widget.js",
-            "line": 128,
+            "line": 149,
+            "description": "Abstract class to construct a widget",
             "is_constructor": 1
         },
         "Joystick": {
@@ -59,8 +60,8 @@
             "module": "Widget",
             "namespace": "",
             "file": "widget.js",
-            "line": 244,
-            "description": "Allows users to create a joystick widget",
+            "line": 277,
+            "description": "Class to create a joystick widget",
             "is_constructor": 1,
             "extends": "Widget"
         },
@@ -75,7 +76,8 @@
             "module": "Widget",
             "namespace": "",
             "file": "widget.js",
-            "line": 345,
+            "line": 386,
+            "description": "Class to create a input text widget",
             "is_constructor": 1,
             "extends": "Widget"
         },
@@ -90,7 +92,8 @@
             "module": "Widget",
             "namespace": "",
             "file": "widget.js",
-            "line": 408,
+            "line": 457,
+            "description": "Class to create a Swipe widget",
             "is_constructor": 1,
             "extends": "Widget"
         }
@@ -98,19 +101,12 @@
     "classitems": [
         {
             "file": "widget.js",
-            "line": 8,
+            "line": 9,
+            "description": "Define the used port",
             "itemtype": "property",
             "name": "DEFAULT_PORT",
             "type": "String",
-            "class": "Widget",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 14,
-            "itemtype": "property",
-            "name": "LEFT",
-            "type": "String",
+            "defaul": "8080",
             "class": "Widget",
             "module": "Widget"
         },
@@ -118,44 +114,39 @@
             "file": "widget.js",
             "line": 20,
             "itemtype": "property",
-            "name": "RIGHT",
-            "type": "String",
-            "class": "Widget",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 26,
-            "itemtype": "property",
-            "name": "UP",
-            "type": "String",
-            "class": "Widget",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 32,
-            "itemtype": "property",
-            "name": "DOWN",
-            "type": "String",
-            "class": "Widget",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 38,
-            "itemtype": "property",
             "name": "DIRECTION",
             "type": "String",
+            "default": "\"DIRECTION\"",
             "class": "Widget",
             "module": "Widget"
         },
         {
             "file": "widget.js",
-            "line": 44,
+            "line": 29,
             "itemtype": "property",
             "name": "TEXT",
             "type": "String",
+            "default": "\"TEXT\"",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 36,
+            "itemtype": "property",
+            "name": "SWIPE",
+            "type": "String",
+            "default": "\"SWIPE\"",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 43,
+            "itemtype": "property",
+            "name": "NAME",
+            "type": "String",
+            "default": "\"SET_NAME\"",
             "class": "Widget",
             "module": "Widget"
         },
@@ -163,25 +154,18 @@
             "file": "widget.js",
             "line": 50,
             "itemtype": "property",
-            "name": "SWIPE",
-            "type": "String",
-            "class": "Widget",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 56,
-            "itemtype": "property",
-            "name": "NAME",
-            "type": "String",
-            "class": "Widget",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 62,
-            "itemtype": "property",
             "name": "READY",
+            "type": "String",
+            "default": "\"CLIENT_READY\"",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 57,
+            "description": "Define the user's name",
+            "itemtype": "property",
+            "name": "user_name",
             "type": "String",
             "class": "Widget",
             "module": "Widget"
@@ -190,14 +174,45 @@
             "file": "widget.js",
             "line": 68,
             "itemtype": "property",
-            "name": "your_name",
+            "name": "LEFT",
             "type": "String",
+            "default": "\"L\"",
             "class": "Widget",
             "module": "Widget"
         },
         {
             "file": "widget.js",
-            "line": 85,
+            "line": 75,
+            "itemtype": "property",
+            "name": "RIGHT",
+            "type": "String",
+            "default": "R",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 82,
+            "itemtype": "property",
+            "name": "UP",
+            "type": "String",
+            "default": "U",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 89,
+            "itemtype": "property",
+            "name": "DOWN",
+            "type": "String",
+            "default": "D",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 97,
             "itemtype": "method",
             "name": "start",
             "params": [
@@ -212,7 +227,7 @@
         },
         {
             "file": "widget.js",
-            "line": 103,
+            "line": 109,
             "itemtype": "method",
             "name": "ready",
             "class": "Widget",
@@ -220,7 +235,8 @@
         },
         {
             "file": "widget.js",
-            "line": 119,
+            "line": 126,
+            "description": "Draw the bar with the widget icons in a html element",
             "itemtype": "method",
             "name": "drawBar",
             "params": [
@@ -235,16 +251,32 @@
         },
         {
             "file": "widget.js",
-            "line": 133,
-            "itemtype": "property",
-            "name": "url",
-            "type": "String",
+            "line": 137,
+            "description": "Method to change de default options",
+            "itemtype": "method",
+            "name": "drawBar",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "html element",
+                    "type": "String"
+                }
+            ],
             "class": "Widget",
             "module": "Widget"
         },
         {
             "file": "widget.js",
-            "line": 141,
+            "line": 157,
+            "itemtype": "property",
+            "name": "socket",
+            "type": "",
+            "class": "Widget",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 163,
             "itemtype": "property",
             "name": "id",
             "type": "String",
@@ -253,7 +285,8 @@
         },
         {
             "file": "widget.js",
-            "line": 148,
+            "line": 170,
+            "description": "Method",
             "itemtype": "method",
             "name": "handleResponse",
             "class": "Widget",
@@ -261,7 +294,8 @@
         },
         {
             "file": "widget.js",
-            "line": 169,
+            "line": 192,
+            "description": "Method that initialize a widget",
             "itemtype": "method",
             "name": "initialize",
             "params": [
@@ -281,21 +315,34 @@
         },
         {
             "file": "widget.js",
-            "line": 186,
+            "line": 206,
+            "description": "Send to the server the widget's controls",
             "itemtype": "method",
             "name": "sendToServer",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "obj",
+                    "description": ""
+                }
+            ],
             "class": "Widget",
             "module": "Widget"
         },
         {
             "file": "widget.js",
-            "line": 199,
+            "line": 222,
+            "description": "Send to the server the direction",
             "itemtype": "method",
             "name": "sendDirection",
             "params": [
                 {
                     "name": "dir",
-                    "description": "joystick direction",
+                    "description": "widget direction",
                     "type": "String"
                 }
             ],
@@ -304,7 +351,8 @@
         },
         {
             "file": "widget.js",
-            "line": 207,
+            "line": 231,
+            "description": "Used to send to the server the text wroten in the text box",
             "itemtype": "method",
             "name": "sendText",
             "params": [
@@ -319,7 +367,8 @@
         },
         {
             "file": "widget.js",
-            "line": 215,
+            "line": 240,
+            "description": "Used to send to the server the swipe's direction",
             "itemtype": "method",
             "name": "sendSwipe",
             "params": [
@@ -334,7 +383,8 @@
         },
         {
             "file": "widget.js",
-            "line": 223,
+            "line": 249,
+            "description": "Responsible for draw the widget",
             "itemtype": "method",
             "name": "draw",
             "params": [
@@ -349,7 +399,7 @@
         },
         {
             "file": "widget.js",
-            "line": 229,
+            "line": 256,
             "itemtype": "method",
             "name": "handleInput",
             "class": "Widget",
@@ -357,7 +407,8 @@
         },
         {
             "file": "widget.js",
-            "line": 234,
+            "line": 262,
+            "description": "Allow to add a widget icon",
             "itemtype": "method",
             "name": "addWidget",
             "params": [
@@ -372,7 +423,8 @@
         },
         {
             "file": "widget.js",
-            "line": 252,
+            "line": 286,
+            "description": "Responsible to show the widget",
             "itemtype": "method",
             "name": "draw",
             "params": [
@@ -387,7 +439,8 @@
         },
         {
             "file": "widget.js",
-            "line": 294,
+            "line": 329,
+            "description": "Define the events for joystick buttons",
             "itemtype": "method",
             "name": "handleInput",
             "class": "Joystick",
@@ -395,7 +448,8 @@
         },
         {
             "file": "widget.js",
-            "line": 318,
+            "line": 356,
+            "description": "Allow to add a widget in a html element",
             "itemtype": "method",
             "name": "addWidget",
             "params": [
@@ -410,39 +464,65 @@
         },
         {
             "file": "widget.js",
-            "line": 352,
+            "line": 395,
+            "description": "Responsible to show the widget",
             "itemtype": "method",
             "name": "draw",
-            "class": "inputText",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 370,
-            "itemtype": "method",
-            "name": "handleInput",
-            "class": "inputText",
-            "module": "Widget"
-        },
-        {
-            "file": "widget.js",
-            "line": 386,
-            "itemtype": "method",
-            "name": "addWidget",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "html element",
+                    "type": "String"
+                }
+            ],
             "class": "inputText",
             "module": "Widget"
         },
         {
             "file": "widget.js",
             "line": 415,
+            "description": "Define the events for input text widget",
+            "itemtype": "method",
+            "name": "handleInput",
+            "class": "inputText",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 433,
+            "description": "Allows user to add a widget in a html element",
+            "itemtype": "method",
+            "name": "addWidget",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "html element",
+                    "type": "String"
+                }
+            ],
+            "class": "inputText",
+            "module": "Widget"
+        },
+        {
+            "file": "widget.js",
+            "line": 466,
+            "description": "Responsible to show the widget",
             "itemtype": "method",
             "name": "draw",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "html element",
+                    "type": "String"
+                }
+            ],
             "class": "Swipe",
             "module": "Widget"
         },
         {
             "file": "widget.js",
-            "line": 425,
+            "line": 478,
+            "description": "Define the events for swipe widget",
             "itemtype": "method",
             "name": "handleInput",
             "class": "Swipe",
@@ -450,12 +530,25 @@
         },
         {
             "file": "widget.js",
-            "line": 450,
+            "line": 505,
+            "description": "Allows user to add a widget in a html element",
             "itemtype": "method",
             "name": "addWidget",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "html element",
+                    "type": "String"
+                }
+            ],
             "class": "Swipe",
             "module": "Widget"
         }
     ],
-    "warnings": []
+    "warnings": [
+        {
+            "message": "unknown tag: defaul",
+            "line": " widget.js:9"
+        }
+    ]
 }

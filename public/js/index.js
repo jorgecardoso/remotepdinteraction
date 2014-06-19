@@ -5,8 +5,7 @@ var game;
 var socket = io.connect('http://localhost:8080');
 
 socket.on('connect', function(){
-	console.log('SERVER READY');
-	socket.emit('SERVER_READY', {id: "dsfsddfs"});
+	socket.emit('APP_READY', {id: "dsfsddfs"});
 	game = snakeGame("the-game");
 	game.start();
 	
@@ -36,6 +35,5 @@ socket.on('asd', function(data){
 	console.log("Jogador: " + data.name + " comando: " + data.cmd);
 	
 	game.setDirection(data.name, data.cmd);
-	
-	
+
 });
