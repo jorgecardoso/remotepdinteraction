@@ -1,0 +1,17 @@
+rm *.aux
+rm *.toc
+rm *.idx
+rm *.ind
+rm *.ilg
+rm *.log
+rm *.out
+rm *.lof
+rm *.lot
+rm *.lol
+rm *.bbl
+rm *.blg
+rm *.fls
+rm *.gz
+rm *.fdb_latexmk
+rm *.syntex.gz(busy)
+rm *.syntex.gz

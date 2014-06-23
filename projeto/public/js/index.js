@@ -14,7 +14,6 @@ socket.on('connect', function(){
 socket.on('NEW_USER', function(data){
 	
 	game.setPlayers(data.player);
-	console.log("MY NAME: " + data.player);
 	alertify.log(data.player + " is ready!", "success", 10000);
 	var user = new Element('li', { 'id': data.player});
 	$('all_users').appendChild(user);
@@ -26,7 +25,7 @@ socket.on('SET_USER', function(data){
 	
 	$(data.player).update(data.player + ': ' + game.getScores(data.player));
 	$(data.player).setStyle({
-		backgroundColor: game.getColor(data.player)
+		color: game.getColor(data.player)
 	});
 
 });

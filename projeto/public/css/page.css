@@ -46,14 +46,13 @@ header {
 #users {
   margin: 0 auto;
   width: 640px;
-  height: 30px; 
+  height: 60px; 
 }
 
 #users li {
   display: inline-block;
-  height: 59px;
+  height: 60px;
   line-height: 59px;
-  background-color: #000;
 }
 
 #game,

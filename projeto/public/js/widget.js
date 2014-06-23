@@ -392,6 +392,10 @@
 		  * @param elem {String} html element
 		  */
 		draw: function(elem){
+
+			/*if (user_name==null){
+				var name = 
+			}*/
 			var div = new Element('div', {'id': 'utext'});
 			$$(elem)[0].appendChild(div);
 			var text = new Element('form', {'id': 'someText'});
