@@ -3,21 +3,26 @@
 
 \section*{}
 
-\textbf{Escolhas tecnológicas}
-
-\textbf{websockets}
-
 O desenvolvimento de aplicações de cariz público levanta algumas questões, que no momento do desenvolvimento têm alguma importância nas escolhas efetuadas.
 
+\subsection*{Escolhas tecnológicas}
+
+
 Era desejada a implementação de aplicações que permitissem uma manipulação direta por parte do utilizador, suportando mais do que uma interação simultânea, levando a optar pelo protocolo \textit{websocket} juntamente com a biblioteca \textit{Socket.io}, uma vez que criam uma ligação bi-direcional, mantendo a conexão aberta enquanto as mensagens são encaminhadas de um lado para o outro, permitindo a transmissão de informação para múltiplos \textit{sockets}, armazenamento de informação associada a cada cliente e ainda “inputs/outputs” assíncronos. 
+
+\subsection*{Aplicação Exemplo}
 
 Era pretendido encontrar uma solução para os desafios relacionados com o tema proposto que são descritos na introdução, foi solucionada a questão relacionada com a utilização da aplicação por um ou mais utilizadores, bem como os diferentes tipos de controlo que serão suportados.
 
 No exemplo implementado, tal como já foi referido os diferentes utilizadores são distinguidos com base na cor da cobra que os representa durante o jogo, e ainda conseguem identificar-se inserindo logo no início o seu nome de utilizador. 
 
-Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores, no entanto outras hipoteses poderiam ser usadas, como por exemplo a divisão do ecrã em partes iguais para cada pessoa.
+Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores, no entanto outras hipóteses poderiam ser usadas, como por exemplo a divisão do ecrã em partes iguais para cada pessoa.
 
-Na solução apresentada, o utilizador final, apenas tem à sua disposição três diferentes tipos de controlo, que, tal como já foi referido representam um joystick, uma caixa para introdução de texto e ainda \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novos \textit{widgets} para que um programador consiga criar aplicações interativas. Contudo, com a realização dos testes foi possível perceber que outros tipos de controlo seriam benéficos para um maior leque de possibilidades na escolha da aplicação a desenvolver, não tendo sido criados apenas por falta de tempo.
+Na solução apresentada, o utilizador final, apenas tem à sua disposição três diferentes tipos de controlo, que, tal como já foi referido representam um joystick, uma caixa para introdução de texto e ainda \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novos \textit{widgets} para que um programador consiga criar aplicações interativas. 
+
+Inicialmente foram apenas definidos o \textit{joystick} e o \textit{widget} de introdução de texto que após.
+
+Contudo, com a realização dos testes foi possível perceber que outros tipos de controlo seriam benéficos para um maior leque de possibilidades na escolha da aplicação a desenvolver, não tendo sido criados apenas por falta de tempo.
 
 
 

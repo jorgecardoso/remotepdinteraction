@@ -84,9 +84,9 @@ Foi incluída no ficheiro widget.js de para possibilitar o desenvolvimento e cor
 Para além das tecnologias acima definidas todo o projeto foi realizado recorrendo a JavaScript, HTML e CSS. 
 
 
-\section{Framework Desenvolvida} \label{sec:framework}
+\section{\textit{Framework} Desenvolvida} \label{sec:framework}
 
-Um dos principais objetivos centrava-se no desenvolvimento de uma framework que facilitasse o desenvolvimento de aplicações para ecrãs públicos, que permitissem a manipulação direta por parte dos utilizadores, deste modo, surge a criação de uma pequena API que permite a construção e utilização de três diferentes tipos de controlo. 
+Um dos principais objetivos centrava-se no desenvolvimento de uma \textit{framework} que facilitasse o desenvolvimento de aplicações para ecrãs públicos, que permitissem a manipulação direta por parte dos utilizadores, deste modo, surge a criação de uma pequena API que permite a construção e utilização de três diferentes tipos de controlo. 
 Na figura~\ref{fig:classes} é representada a estrutura usada, mostrando as classes constituintes, respetivos atributos e métodos e ainda a relação entre as classes.
 
 \begin{figure}[ht]
@@ -111,18 +111,18 @@ A classe Widget representa uma abstração dos controlos possíveis, sendo a cla
 	\begin{tabular}{ p{2cm}|p{2cm}|p{10cm}  }
 	\multicolumn{1}{c}{\textbf{Métodos}} & \multicolumn{1}{c}{\textbf{Parâmetros}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
 	\hline
-	\multicolumn{1}{c}{initialize} & \multicolumn{1}{c}{id} &Método responsável por desenhar o widget correspondente no elemento (elem) da página html apresentada no dispositivo \\
+	\multicolumn{1}{c}{initialize} & \multicolumn{1}{c}{id} &Método responsável por inicializar o widget \\
 	\hline
-	\multicolumn{1}{c}{sendToServer} & \multicolumn{1}{c}{} &Método responsável por atribuir eventos aos widgets \\
+	\multicolumn{1}{c}{sendToServer} & \multicolumn{1}{c}{} &Método responsável por realizar a comunicação com o servidor \\
 	\hline
-	\multicolumn{1}{c}{sendDirection} & \multicolumn{1}{c}{elem} &Método responsável por adicionar o widget à barra de widgets disponíveis no elemento, elem, da página html \\
+	\multicolumn{1}{c}{sendDirection} & \multicolumn{1}{c}{dir} &Método que usa o método \textit{sendToServer} para enviar a direção, dir, obtida pelo \textit{widget joystick} \\
 	\hline
-	\multicolumn{1}{c}{sendText} & \multicolumn{1}{c}{options} &Método que permite ao programador alterar o conteúdo do que é enviado do widget para a aplicação  \\
+	\multicolumn{1}{c}{sendText} & \multicolumn{1}{c}{str} &Método que usa o método \textit{sendToServer} para enviar texto, str, obtida pelo \textit{widget}  \\
 	\hline
-	\multicolumn{1}{c}{sendSwipe} & \multicolumn{1}{c}{options} &Método que permite ao programador alterar o conteúdo do que é enviado do widget para a aplicação  \\
+	\multicolumn{1}{c}{sendSwipe} & \multicolumn{1}{c}{dir} &Método que usa o método \textit{sendToServer} para enviar a direção, dir, obtida pelo \textit{widget swipe}  \\
 	\hline
 	\end{tabular}
-	\caption{Métodos disponíveis em cada um dos widget}
+	\caption{Métodos internos da classe abstrata widget}
 	\label{table:widget_met}
 	\end{table}
 	
@@ -213,11 +213,26 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 \subsection{Utilização}
 
-	O principal pressuposto do desenvolvimento desta API é permitir que um programador, possa, mais facilmente, desenvolver aplicações para ecrãs públicos, preocupando-se apenas com os controlos que estas necessitam.
-	Para a correta utilização, de acordo com o trabalho realizado, o programador terá de criar um ficheiro .html, cujo nome seja widget.html, onde deverá incluir a biblioteca widget.js, sendo esta dependente de outras bibliotecas que terão de ser incluídas no mesmo ficheiro, como \textit{Socket.io}, \textit{prototype} e \textit{swipeable}. 
+	O desenvolvimento da \textit{framework} apresentada tinha como objetivo auxiliar na criação de controlos para aplicações com as quais fosse possível interagir em ambiente público com um dispositivo móvel.
+
+	Um programador que pretenda usufruir das suas funcionalidades deverá:
+
+	\begin{itemize}
+		\item Criar um documento html com o nome \textit{widget.html} e a estrutura apresentada na figura 
+		\item Incluir no ficheiro as seguintes bibliotecas:
+			\begin{itemize}
+			\item prototype.js 
+			\item swipeable.js
+			\item socket.io
+			\end{itemize}
+		\item Incluir no mesmo ficheiro um script onde são chamadas as funções da API.
+	\end{itemize}
+
+	Apesar de haver liberdade nas escolha dos widgets a implementar, independentemente disto, o método \textit{start(url,options)} tem obrigatoriamente de ser chamado antes da criação dos \textit{widgets} pretendidos. 
+
 
 	
-\section{Aplicação Implementada} \label{sec:exemplo}
+\section{Exemplo Implementado} \label{sec:exemplo}
 
 	Neste momento apenas existe uma aplicação exemplo, no entanto permite ao utilizador o uso dos três tipos de controlo disponíveis. 
 
