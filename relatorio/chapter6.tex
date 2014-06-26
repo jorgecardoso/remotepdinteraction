@@ -3,24 +3,40 @@
 
 \section*{}
 
+Ao longo de todo o processo de desenvolvimento, para além do cumprimento dos objetivos foi também importante perceber de que modo seria possível alcança-los de forma eficaz e que tecnologias deveriam ser usadas.
+
 O desenvolvimento de aplicações de cariz público levanta algumas questões, que no momento do desenvolvimento têm alguma importância nas escolhas efetuadas.
 
 \subsection*{Escolhas tecnológicas}
 
+Quando se fala de tecnologia é de conhecimento geral que a maior parte das vezes, para a mesma finalidade existem diversas opções, deste modo é necessário ponderar e perceber qual delas se enquadra melhor na solução pretendida e se os resultados finais que serão obtidos correspondem ao que é desejado.
 
-Era desejada a implementação de aplicações que permitissem uma manipulação direta por parte do utilizador, suportando mais do que uma interação simultânea, levando a optar pelo protocolo \textit{websocket} juntamente com a biblioteca \textit{Socket.io}, uma vez que criam uma ligação bi-direcional, mantendo a conexão aberta enquanto as mensagens são encaminhadas de um lado para o outro, permitindo a transmissão de informação para múltiplos \textit{sockets}, armazenamento de informação associada a cada cliente e ainda “inputs/outputs” assíncronos. 
+Uma vez que o projeto exigia que existisse uma comunicação entre o dispositivo do utilizador final e a aplicação, que o mesmo controlaria, e que no momento da interação, poderia existir mais do que um cliente, levou ao uso da biblioteca \textit{Socket.io}, em conjunto com o protocolo \textit{websocket}. Estes criam uma ligação bi-direcional, mantendo a conexão aberta enquanto as mensagens são encaminhadas de um lado para o outro, permitindo a transmissão de informação para múltiplos \textit{sockets}, o armazenamento de informação associada a cada cliente e ainda \textit{inputs/outputs} assíncronos. 
 
-\subsection*{Aplicação Exemplo}
+Posteriormente, no desenvolvimento da API que daria origem aos \textit{widgtes}, era pretendido o uso de classes e também herança, de modo a que todos os tipos de controlo tivessem uma construção semelhante e que a sua implementação se tornasse mais intuitiva para futuras aplicações, no entanto \textit{JavaScript} não suporta a manipulação de classes nem objetos baseados nas mesmas. Esta característica de \textit{JavaScript} leva à introdução da \textit{framework} \textit{Prototype.js} na solução.
+
+Outra questão que exigiu uma reflexão mais cuidada e consequente tomada de decisão centrou-se no que o transeunte teria de fazer para que se conseguisse ligar a um ecrã e usufruir da aplicação. A escolha recaiu sobre a leitura de um \textit{QR code}. 
+
+Apesar desta decisão ter como desvantagem a obrigatoriedade de o utilizador possuir no seu dispositivo um leitor de \textit{QR codes}, por outro lado é algo que desperta o interesse de quem passa por um ecrã, que quando se apercebe da sua existência a sua curiosidade leva-o a querer experimentar. Segundo Wilson~\cite{Wilson2014}, estes são referidos como algo bastante simples de usar, que recorre a poucos recursos, como tempo e dinheiro, e mesmo com uma fraca aceitação por parte do público em geral, trata-se de uma tecnologia demasiado simples para ignorar.
+
+O uso das restantes tecnologias surge quase implicitamente ao longo do desenvolvimento, conforme os objetivos que se pretendiam alcançar.
+
+\subsection*{Exemplo Implementado}
 
 Era pretendido encontrar uma solução para os desafios relacionados com o tema proposto que são descritos na introdução, foi solucionada a questão relacionada com a utilização da aplicação por um ou mais utilizadores, bem como os diferentes tipos de controlo que serão suportados.
 
-No exemplo implementado, tal como já foi referido os diferentes utilizadores são distinguidos com base na cor da cobra que os representa durante o jogo, e ainda conseguem identificar-se inserindo logo no início o seu nome de utilizador. 
+Não constava nos objetivos finais o desenvolvimento da aplicação exemplo, mas apenas a sua implementação, consequentemente, a escolha efetuada surge com base numa pesquisa de jogos desenvolvidos em \textit{JavaScript}, que permitissem o modo multi-jogador. 
 
-Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores, no entanto outras hipóteses poderiam ser usadas, como por exemplo a divisão do ecrã em partes iguais para cada pessoa.
+Optou-se pelo clássico jogo da \textit{Snake}, por ser um jogo conhecido, que não necessita de instruções extensas, permite uma interação rápida, sendo desafiante e no caso de multi-jogador torna-se competitivo. O jogo inicialmente encontrado, só continha o modo de jogo individual, no entanto foi fácil a sua alteração para que haver a possibilidade de mais do que uma pessoa jogarem ao mesmo tempo.
 
-Na solução apresentada, o utilizador final, apenas tem à sua disposição três diferentes tipos de controlo, que, tal como já foi referido representam um joystick, uma caixa para introdução de texto e ainda \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novos \textit{widgets} para que um programador consiga criar aplicações interativas. 
+No exemplo implementado, tal como já foi referido, os diferentes utilizadores são distinguidos com base na cor da cobra que os representa durante o jogo, e ainda conseguem identificar-se inserindo logo no início o seu nome de utilizador. 
 
-Inicialmente foram apenas definidos o \textit{joystick} e o \textit{widget} de introdução de texto que após.
+Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores, no entanto outras hipóteses poderiam ser usadas, estando esta característica bastante dependente do tipo de aplicação a implementar. No caso de se tratar de um sistema colaborativo a distinção é mais fácil se for atribuída aos jogadores, maneira de eles próprios escolherem a sua identificação, sendo através de uma cor, de um nome ou até um objeto que os identifique. Se por outro lado for um sistema independente onde cada utilizador necessita do seu espaço será mais vantajosa a divisão do ecrã em partes iguais para cada um.
+
+Na solução apresentada estão disponíveis três diferentes tipos de controlo, que, tal como já foi referido representam um \textit{joystick}, uma caixa para introdução de texto e ainda \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novos \textit{widgets} para que um programador consiga criar aplicações interativas. 
+
+Inicialmente foram apenas definidos o \textit{joystick} e o \textit{widget}, o \textit{swipe} apesar de ter a mesma funcionalidade que o \textit{joystick} surge de forma a fornecer outra alternativa ao utilizador recorrendo aos recursos disponíveis no seu dispositivo. 
+Julie Rico em ~\cite{Rico2010}, conclui que uma experiência positiva aumenta a recetividade a controlos gestuais, neste caso concreto os movimentos de \textit{swipe}, levando à repetição.  
 
 Contudo, com a realização dos testes foi possível perceber que outros tipos de controlo seriam benéficos para um maior leque de possibilidades na escolha da aplicação a desenvolver, não tendo sido criados apenas por falta de tempo.
 

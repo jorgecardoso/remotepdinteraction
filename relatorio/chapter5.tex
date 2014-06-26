@@ -3,10 +3,10 @@
 
 \section*{}
 
-Os testes realizados são uma fase importante no desenvolvimento de qualquer produto, permitindo descobrir alguma falhas no trabalho realizado e dando sugestões de melhorias futuras.
-Neste capítulo são descritos os testes realizados bem como as conclusões a que os mesmos permitiram chegar.
+Os testes realizados são uma fase importante no desenvolvimento de qualquer produto, permitindo descobrir alguma falhas no trabalho efetuado e dando sugestões de melhorias futuras.
+Neste capítulo são descritos os diversos tipos de testes bem como as conclusões a que os mesmos permitiram chegar.
 
-\subsection*{Testes Iterativos}
+\section{Testes Iterativos}
 
 	Ao longo de todo o desenvolvimento, sempre que uma nova funcionalidade era implementada surgia a necessidade de testar de forma a perceber se esta efetuava a ação desejada.
 
@@ -14,21 +14,27 @@ Neste capítulo são descritos os testes realizados bem como as conclusões a qu
 
 	Por exemplo, na solução implementada, aquando da criação dos tipos de controlo, primeiro foi definido e implementado apenas um, neste caso o \textit{widget joystick}, que foi testado verificando se a comunicação com a aplicação existia, e se as setas executavam no jogo as ações supostas. Assim qualquer erro detetado e corrigido contribuiu para uma maior facilidade na criação dos restantes \textit{widgets}, diminuindo a correção de erros no final da implementação.
 
-\subsection*{Testes Finais}
+
+\section{Testes Finais}
 	
 	Os testes realizados para verificar se as funcionalidades implementadas correspondem ao especificado inicialmente são de fácil realização e apenas requerem que alguém experimente o que está desenvolvido. Contudo neste projeto era também importante perceber de que modo outros programadores poderiam usar a \textit{framework} desenvolvida com o intuito de definirem alguns tipos de controlo para as sua próprias aplicações.
 
-	Foi pedido a três estudantes do 5º ano do mestrado integrado em engenharia informática e computação, que desenvolvessem uma pequena aplicação e que usassem para a definição dos controlos exigidos a \textit{API} desenvolvida, para que fosse possível perceber as dificuldades encontradas e que alterações seriam vantajosas.   
+	Foi pedido a três estudantes do 5º ano do Mestrado Integrado em Engenharia Informática e Computação, que desenvolvessem uma pequena aplicação e que usassem para a definição dos controlos exigidos a \textit{API} desenvolvida, para que fosse possível perceber as dificuldades encontradas e que alterações seriam vantajosas. 
 
-\subsection*{Testes Quantitativos}
+	Das pessoas acima referidas, todas optaram pela implementação de jogos, contudo escolheram exemplos diferentes. Uma escolheu uma corrida de automóveis, outra o clássico jogo de tetris e por último o jogo da forca. Em todas os exemplos, os estudantes conseguiram com sucesso implementar os tipos de controlo existentes e ter uma aplicação funcional, contudo em todos eles foram referidas pequenas falhas ou sugestões relativas ao projeto.
 
-	
+	Na corrida de carros foi sugerida a criação de um novo tipo de controlo que usasse o acelarometro do dispositivo de modo a permitir uma interação através do movimento do mesmo. No jogo da forca, apesar de implementado, apenas era possível ser jogado por um jogador. 
+	Por último, o conhecido jogo de tetris foi talvez o que mais dúvidas levantou. Mesmo conhecendo a  solução para a distinção de jogadores, a divisão de ecrã de acordo com o número, esta não foi conseguida. Adicionalmente foram também sugeridas pequenas alterações a nível de funções da \textit{API} desenvolvida que foram corrigidas.
 
-\subsection*{Testes Públicos}
+	Ainda durante a realização destes testes foi possível constatar que existem demasiadas alterações a efetuar no código original para a implementação de novos aplicações, o que dificulta o trabalho de futuras pessoas que não estejam familiarizadas com código fornecido.
+
+	É de salientar, que nem todos os intervenientes destes testes possuíam a mesma experiência com \textit{JavaScript}, apesar de ser uma linguagem conhecidas por todos. O elemento que optou pela corrida de automóveis era o que tinha uma experiência mais vasta.
+
+\section{Testes Públicos}
 
 	Aquando da definição e especificação do projeto foi referido que seria vantajoso testar a solução implementada em ecrãs públicos, no entanto devido a algum atraso no desenvolvimento, o mesmo não foi possível.
 
-	A realização destes testes permitira tirar algumas conclusões relativas à utilização por parte dos transeuntes, que poderiam ser resposta às seguintes questões:
+	A realização destes testes permitiria tirar algumas conclusões relativas à utilização por parte dos transeuntes, que poderiam ser resposta às seguintes questões:
 
 	\begin{itemize}
 	\item \textbf{Antes de efetuar a ligação com o ecrã:}
@@ -36,7 +42,7 @@ Neste capítulo são descritos os testes realizados bem como as conclusões a qu
 		\item Que riscos estou a correr se me ligar a este ecrã?
 		\item O que tenho de fazer para me conseguir ligar?
 		\end{itemize}
-	\item \textbf{Após estar conectado com o ecrã}
+	\item \textbf{Após estar conectado com o ecrã}:
 		\begin{itemize}
 		\item O que tenho de fazer para usar a aplicação?
 		\item Como sei quem sou eu durante a interação?
@@ -44,7 +50,7 @@ Neste capítulo são descritos os testes realizados bem como as conclusões a qu
 		\end{itemize}
 	\end{itemize} 
 
-\subsection*{Conclusões}
+\section{Conclusões}
 
 	Após a realização dos testes acima descritos, houve a possibilidade de perceber realmente de que modo a aplicação era vista por alguém que não estava a par do seu desenvolvimento e que alterações deveriam ser efetuadas para obter uma melhor \textit{performance}.
 
