@@ -3,7 +3,7 @@
 
 \section*{}
 
-Ao longo de todo o processo de desenvolvimento, para além do cumprimento dos objetivos foi também importante perceber de que modo seria possível alcança-los de forma eficaz e que tecnologias deveriam ser usadas.
+Ao longo de todo o processo de desenvolvimento, para além do cumprimento dos objetivos foi também importante perceber de que modo seria possível alcançá-los de forma eficaz e que tecnologias deveriam ser usadas.
 
 O desenvolvimento de aplicações de cariz público levanta algumas questões, que no momento do desenvolvimento têm alguma importância nas escolhas efetuadas.
 
@@ -23,22 +23,32 @@ O uso das restantes tecnologias surge quase implicitamente ao longo do desenvolv
 
 \subsection*{Exemplo Implementado}
 
-Era pretendido encontrar uma solução para os desafios relacionados com o tema proposto que são descritos na introdução, foi solucionada a questão relacionada com a utilização da aplicação por um ou mais utilizadores, bem como os diferentes tipos de controlo que serão suportados.
+Era pretendido encontrar uma solução para os desafios relacionados com o tema proposto que são descritos na introdução. Foi solucionada a questão relacionada com a utilização da aplicação por um ou mais utilizadores, bem como os diferentes tipos de controlo que serão suportados.
 
-Não constava nos objetivos finais o desenvolvimento da aplicação exemplo, mas apenas a sua implementação, consequentemente, a escolha efetuada surge com base numa pesquisa de jogos desenvolvidos em \textit{JavaScript}, que permitissem o modo multi-jogador. 
+O desenvolvimento da aplicação para a prova do conceito não fazia parte do contexto da dissertação, podendo integrar-se um exemplo já existente com a API desenvolvida. Consequentemente, a escolha efetuada surge com base numa pesquisa de jogos desenvolvidos em \textit{JavaScript}, que permitissem o modo multi-jogador. 
 
-Optou-se pelo clássico jogo da \textit{Snake}, por ser um jogo conhecido, que não necessita de instruções extensas, permite uma interação rápida, sendo desafiante e no caso de multi-jogador torna-se competitivo. O jogo inicialmente encontrado, só continha o modo de jogo individual, no entanto foi fácil a sua alteração para que haver a possibilidade de mais do que uma pessoa jogarem ao mesmo tempo.
+Optou-se pelo clássico jogo da \textit{Snake}, por ser um jogo conhecido, que não necessita de instruções extensas, permite uma interação rápida, sendo desafiante e no caso de multi-jogador torna-se competitivo. O exemplo encontrado só continha o modo de jogo individual, no entanto foi fácil a sua alteração para que houvesse a possibilidade de mais do que uma pessoa jogarem ao mesmo tempo.
 
-No exemplo implementado, tal como já foi referido, os diferentes utilizadores são distinguidos com base na cor da cobra que os representa durante o jogo, e ainda conseguem identificar-se inserindo logo no início o seu nome de utilizador. 
+No exemplo implementado, tal como já foi referido, os diferentes utilizadores são distinguidos com base na cor da cobra que os representa durante o jogo e ainda conseguem identificar-se inserindo logo no início o seu nome de utilizador. 
 
-Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores, no entanto outras hipóteses poderiam ser usadas, estando esta característica bastante dependente do tipo de aplicação a implementar. No caso de se tratar de um sistema colaborativo a distinção é mais fácil se for atribuída aos jogadores, maneira de eles próprios escolherem a sua identificação, sendo através de uma cor, de um nome ou até um objeto que os identifique. Se por outro lado for um sistema independente onde cada utilizador necessita do seu espaço será mais vantajosa a divisão do ecrã em partes iguais para cada um.
+Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores. No entanto, outras hipóteses poderiam ser usadas, estando esta característica bastante dependente do tipo de aplicação a implementar. No caso de se tratar de um sistema colaborativo, a distinção é mais fácil se for atribuída aos jogadores uma maneira de eles próprios escolherem a sua identificação, seja através de uma cor, de um nome ou até um objeto que os identifique. Se, por outro lado, for um sistema independente onde cada utilizador necessita do seu espaço será mais vantajosa a divisão do ecrã em partes iguais para cada um.
 
 Na solução apresentada estão disponíveis três diferentes tipos de controlo, que, tal como já foi referido representam um \textit{joystick}, uma caixa para introdução de texto e ainda \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novos \textit{widgets} para que um programador consiga criar aplicações interativas. 
 
 Inicialmente foram apenas definidos o \textit{joystick} e o \textit{widget}, o \textit{swipe} apesar de ter a mesma funcionalidade que o \textit{joystick} surge de forma a fornecer outra alternativa ao utilizador recorrendo aos recursos disponíveis no seu dispositivo. 
 Julie Rico em ~\cite{Rico2010}, conclui que uma experiência positiva aumenta a recetividade a controlos gestuais, neste caso concreto os movimentos de \textit{swipe}, levando à repetição.  
 
-Contudo, com a realização dos testes foi possível perceber que outros tipos de controlo seriam benéficos para um maior leque de possibilidades na escolha da aplicação a desenvolver, não tendo sido criados apenas por falta de tempo.
+
+\subsection*{Testes Realizados}
+
+Os testes realizados já quase no fim do desenvolvimento foram uma etapa importante que permitiram fazer um balanço do que tinha sido implementado.
+
+Através destes foi possível entender que apesar dos controlos definidos serem bastante abrangentes existem outras possibilidades que seriam uma mais valia na \textit{framework} desenvolvida, dando resposta a um maior número de aplicações. Uma vez que os testes apenas foram efectuados quase na recta final do projeto, não houve tempo para esta melhoria, ficando assim como possível trabalho futuro.
+
+A sua realização permitiu ter uma visão externa, sugerindo alterações que para quem esteve no desenvolvimento da solução, muito provavelmente, passariam despercebidas. Algumas destas sugestões foram consideradas e procedeu-se à alteração ainda antes da entrega final, outras ficaram registadas para que se possa proceder à sua execução.
+
+Desta forma, pode-se concluir, que a \textit{framework} desenvolvida, pode ainda ser melhorada facilitando ainda mais o desenvolvimento de aplicações a ser utilizadas num ambiente público.
+
 
 
 
