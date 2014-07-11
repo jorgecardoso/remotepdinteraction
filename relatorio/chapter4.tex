@@ -21,7 +21,7 @@ A figura~\ref{fig:componentes} apresenta, de uma forma simples, os componentes a
 \label{fig:componentes}
 \end{figure}
 
-Na figura ~\ref{fig:sequencia} é representado um diagrama de sequência mostrando as diferentes interações entre os componentes constituintes do sistema implementado. Inicialmente terá de existir um pedido por parte de um ecrã para aceder à aplicação. Neste momento, a aplicação comunica com o servidor e a partir daí está preparada para pedidos de possíveis utilizadores. Um utilizador, ao querer interagir com a aplicação, está a enviar um pedido para esta, que por sua vez avisa o servidor e este é responsável por mostrar no dispositivo o \textit{widget} da aplicação. Nesse momento, o \textit{widget} liga-se ao servidor e após ocorrer a ligação procede-se à troca de ``mensagens'' que permitem ao utilizador definir o seu nome. Quando o cliente tiver o nome definido pode usufruir do \textit{widgets} disponíveis, realizando-se a comunicação para o servidor, que por sua vez envia novamente para a aplicação.
+Na figura ~\ref{fig:sequencia} é representado um diagrama de sequência mostrando as diferentes interações entre os componentes constituintes do sistema implementado. Inicialmente terá de existir um pedido por parte de um ecrã para aceder à aplicação. Neste momento, a aplicação comunica com o servidor e a partir daí está preparada para pedidos de possíveis utilizadores. Um utilizador, ao querer interagir com a aplicação, está a enviar um pedido para esta, que por sua vez avisa o servidor e este é responsável por mostrar no dispositivo o \textit{widget} da aplicação. Nesse momento, o \textit{widget} liga-se ao servidor e após ocorrer a ligação procede-se à troca de ``mensagens'' que permitem ao utilizador definir o seu nome. Quando o cliente tiver o nome definido pode usufruir dos \textit{widgets} disponíveis, realizando-se a comunicação para o servidor, que por sua vez envia novamente para a aplicação.
 
 \begin{figure}[ht]
 \centering
@@ -105,7 +105,7 @@ A classe \textit{Widget} representa uma abstração dos controlos possíveis, se
 
 \subsection{Funcionalidades}
 
-	Com o objetivo de facilitar a criação de aplicações para ecrãs públicos, foi desenvolvida uma API, com um conjunto de funcionalidades que permitem a um programador o seu uso na criação de diferentes controlos de acordo.
+	Com o objetivo de facilitar a criação de aplicações para ecrãs públicos, foi desenvolvida uma API, com um conjunto de funcionalidades que permitem a um programador o seu uso na criação de diferentes controlos de acordo com o requerido pela aplicação que irão servir.
 
 	A classe \textit{Widget}, já definida anteriormente, apresenta alguns métodos próprios que são usados nas subclasses permitindo a comunicação com o servidor, (ver tabela ~\ref{table:widget_met}).
 
@@ -235,7 +235,8 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 			\item swipeable.js
 			\item socket.io
 			\end{itemize}
-		\item Incluir no mesmo ficheiro um script onde são chamadas as funções da API.
+		\item Incluir no mesmo ficheiro um \textit{script}
+		 onde são chamadas as funções da API.
 	\end{itemize}
 
 	\begin{figure}[ht]
@@ -294,7 +295,7 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 	Enquanto utilizador final, para poder utilizar a aplicação desenvolvida será necessário:
 	\begin{itemize}
-		\item Possuir um dispositivo com acesso a internet;
+		\item Possuir um dispositivo com acesso a Internet;
 		\item Ter um \textit{browser} instalado;
 		\item Ter instalada no seu dispositivo uma aplicação que permita a leitura de \textit{QR codes}.
 	\end{itemize}
