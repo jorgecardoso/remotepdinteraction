@@ -7,47 +7,47 @@ Ao longo de todo o processo de desenvolvimento, para além do cumprimento dos ob
 
 O desenvolvimento de aplicações de cariz público levanta algumas questões, que no momento do desenvolvimento têm alguma importância nas escolhas efetuadas.
 
-\subsection*{Escolhas tecnológicas}
+\section{Escolhas Tecnológicas}
 
-Quando se fala de tecnologia é de conhecimento geral que a maior parte das vezes, para a mesma finalidade existem diversas opções, deste modo é necessário ponderar e perceber qual delas se enquadra melhor na solução pretendida e se os resultados finais que serão obtidos correspondem ao que é desejado.
+Quando se fala de tecnologia, é do conhecimento geral que na maior parte das vezes, para a mesma finalidade existem diversas opções. Deste modo, é necessário ponderar e perceber qual delas se enquadra melhor na solução pretendida e se os resultados finais que serão obtidos correspondem ao que é desejado.
 
-Uma vez que o projeto exigia que existisse uma comunicação entre o dispositivo do utilizador final e a aplicação, que o mesmo controlaria, e que no momento da interação, poderia existir mais do que um cliente, levou ao uso da biblioteca \textit{Socket.io}, em conjunto com o protocolo \textit{websocket}. Estes criam uma ligação bi-direcional, mantendo a conexão aberta enquanto as mensagens são encaminhadas de um lado para o outro, permitindo a transmissão de informação para múltiplos \textit{sockets}, o armazenamento de informação associada a cada cliente e ainda \textit{inputs/outputs} assíncronos. 
+Uma vez que o projeto exigia que existisse uma comunicação entre o dispositivo do utilizador final e a aplicação, que o mesmo controlaria, e que no momento da interação, poderia existir mais do que um cliente, recorreu-se ao uso da biblioteca \textit{Socket.io}, em conjunto com o protocolo \textit{websocket}. Estes criam uma ligação bi-direcional, mantendo a conexão aberta enquanto as mensagens são encaminhadas de um lado para o outro, permitindo a transmissão de informação para múltiplos \textit{sockets}, o armazenamento de informação associada a cada cliente e ainda \textit{inputs/outputs} assíncronos. 
 
-Posteriormente, no desenvolvimento da API que daria origem aos \textit{widgtes}, era pretendido o uso de classes e também herança, de modo a que todos os tipos de controlo tivessem uma construção semelhante e que a sua implementação se tornasse mais intuitiva para futuras aplicações, no entanto \textit{JavaScript} não suporta a manipulação de classes nem objetos baseados nas mesmas. Esta característica de \textit{JavaScript} leva à introdução da \textit{framework} \textit{Prototype.js} na solução.
+Posteriormente, no desenvolvimento da API que daria origem aos \textit{widgtes}, era pretendido o uso de classes com polimorfismo, de modo a que todos os tipos de controlo tivessem uma construção semelhante e que a sua implementação se tornasse mais intuitiva para futuras aplicações. No entanto \textit{JavaScript} não suporta a manipulação de classes nem de objetos baseados nas mesmas. Esta característica de \textit{JavaScript} leva à introdução da \textit{framework} \textit{Prototype.js} na solução.
 
-Outra questão que exigiu uma reflexão mais cuidada e consequente tomada de decisão centrou-se no que o transeunte teria de fazer para que se conseguisse ligar a um ecrã e usufruir da aplicação. A escolha recaiu sobre a leitura de um \textit{QR code}. 
+Outra questão que exigiu uma reflexão mais cuidada e uma consequente tomada de decisão centrou-se no que o transeunte teria de fazer para que se conseguisse ligar a um ecrã e usufruir da aplicação. A escolha recaiu sobre a leitura de um \textit{QR code}. 
 
-Apesar desta decisão ter como desvantagem a obrigatoriedade de o utilizador possuir no seu dispositivo um leitor de \textit{QR codes}, por outro lado é algo que desperta o interesse de quem passa por um ecrã, que quando se apercebe da sua existência a sua curiosidade leva-o a querer experimentar. Segundo Wilson~\cite{Wilson2014}, estes são referidos como algo bastante simples de usar, que recorre a poucos recursos, como tempo e dinheiro, e mesmo com uma fraca aceitação por parte do público em geral, trata-se de uma tecnologia demasiado simples para ignorar.
+Apesar desta decisão ter como desvantagem a obrigatoriedade de o utilizador possuir no seu dispositivo um leitor de \textit{QR codes} é por outro lado algo que suscita o interesse de quem passa por um ecrã, despertando a sua curiosidade e levando-o a querer experimentar. Segundo Wilson~\cite{Wilson2014}, os \textit{QR codes}, são referidos como algo bastante simples de usar, recorrem a poucos recursos, como tempo e dinheiro, e mesmo com uma fraca utilização por parte do público em geral, trata-se de uma tecnologia demasiado simples para ignorar.
 
 O uso das restantes tecnologias surge quase implicitamente ao longo do desenvolvimento, conforme os objetivos que se pretendiam alcançar.
 
-\subsection*{Exemplo Implementado}
+\section{Exemplo Implementado}
 
-Era pretendido encontrar uma solução para os desafios relacionados com o tema proposto que são descritos na introdução. Foi solucionada a questão relacionada com a utilização da aplicação por um ou mais utilizadores, bem como os diferentes tipos de controlo que serão suportados.
+Pretendia-se encontrar uma solução para os desafios relacionados com o tema proposto que são descritos na introdução. Foi solucionada a questão relacionada com a utilização da aplicação por um ou mais utilizadores, bem como os diferentes tipos de controlo que serão suportados.
 
 O desenvolvimento da aplicação para a prova do conceito não fazia parte do contexto da dissertação, podendo integrar-se um exemplo já existente com a API desenvolvida. Consequentemente, a escolha efetuada surge com base numa pesquisa de jogos desenvolvidos em \textit{JavaScript}, que permitissem o modo multi-jogador. 
 
-Optou-se pelo clássico jogo da \textit{Snake}, por ser um jogo conhecido, que não necessita de instruções extensas, permite uma interação rápida, sendo desafiante e no caso de multi-jogador torna-se competitivo. O exemplo encontrado só continha o modo de jogo individual, no entanto foi fácil a sua alteração para que houvesse a possibilidade de mais do que uma pessoa jogarem ao mesmo tempo.
+Optou-se pelo clássico jogo da \textit{Snake}, por ser um jogo conhecido, que por não necessitar de instruções extensas, permite uma interação rápida, sendo desafiante e no caso de um modo multi-jogador torna-se competitivo. O exemplo encontrado só continha o modo de jogo individual, no entanto, foi fácil a sua alteração para que houvesse a possibilidade de mais do que uma pessoa jogar ao mesmo tempo.
 
 No exemplo implementado, tal como já foi referido, os diferentes utilizadores são distinguidos com base na cor da cobra que os representa durante o jogo e ainda conseguem identificar-se inserindo logo no início o seu nome de utilizador. 
 
-Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores. No entanto, outras hipóteses poderiam ser usadas, estando esta característica bastante dependente do tipo de aplicação a implementar. No caso de se tratar de um sistema colaborativo, a distinção é mais fácil se for atribuída aos jogadores uma maneira de eles próprios escolherem a sua identificação, seja através de uma cor, de um nome ou até um objeto que os identifique. Se, por outro lado, for um sistema independente onde cada utilizador necessita do seu espaço será mais vantajosa a divisão do ecrã em partes iguais para cada um.
+Esta é apenas uma das possibilidades encontradas para dar resposta à distinção num sistema que suporta multi-utilizadores. No entanto, outras hipóteses poderiam ser usadas, estando esta característica bastante dependente do tipo de aplicação a implementar. No caso de se tratar de um sistema colaborativo, a distinção é mais fácil se for atribuída aos jogadores uma maneira de eles próprios escolherem a sua identificação, seja através de uma cor, de um nome ou até de um objeto que os identifique. Se, por outro lado, for um sistema independente, onde cada utilizador necessita do seu espaço será mais vantajosa a divisão do ecrã em partes iguais para cada um.
 
-Na solução apresentada estão disponíveis três diferentes tipos de controlo, que, tal como já foi referido representam um \textit{joystick}, uma caixa para introdução de texto e ainda \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novos \textit{widgets} para que um programador consiga criar aplicações interativas. 
+Na solução apresentada estão disponíveis três diferentes tipos de controlo representados por um \textit{joystick}, uma caixa para introdução de texto e ainda por uma área de \textit{swipe}. A seleção destes ocorreu na tentativa de abranger um grande número de aplicações, não sendo necessária a criação de novas \textit{widgets} para que um programador consiga criar aplicações interativas. 
 
-Inicialmente foram apenas definidos o \textit{joystick} e o \textit{widget}, o \textit{swipe} apesar de ter a mesma funcionalidade que o \textit{joystick} surge de forma a fornecer outra alternativa ao utilizador recorrendo aos recursos disponíveis no seu dispositivo. 
-Julie Rico em ~\cite{Rico2010}, conclui que uma experiência positiva aumenta a recetividade a controlos gestuais, neste caso concreto os movimentos de \textit{swipe}, levando à repetição.  
+Inicialmente foram apenas definidos o \textit{joystick} e a \textit{widget} de introdução de texto. O \textit{swipe} apesar de ter a mesma funcionalidade que o \textit{joystick}, surge de forma a fornecer outra alternativa ao utilizador recorrendo aos recursos disponíveis no seu dispositivo. 
+Julie Rico~\cite{Rico2010} conclui que uma experiência positiva aumenta a recetividade a controlos gestuais. Neste caso concreto, os movimentos de \textit{swipe}, levando à repetição da sua utilização.  
 
 
 \subsection*{Testes Realizados}
 
-Os testes realizados já quase no fim do desenvolvimento foram uma etapa importante que permitiram fazer um balanço do que tinha sido implementado.
+Os testes realizados já quase no fim do desenvolvimento foram uma etapa importante que permitiu fazer um balanço do que tinha sido implementado.
 
-Através destes foi possível entender que apesar dos controlos definidos serem bastante abrangentes existem outras possibilidades que seriam uma mais valia na \textit{framework} desenvolvida, dando resposta a um maior número de aplicações. Uma vez que os testes apenas foram efectuados quase na recta final do projeto, não houve tempo para esta melhoria, ficando assim como possível trabalho futuro.
+Através destes, foi possível entender que, apesar dos controlos definidos serem bastante abrangentes existem outras possibilidades que seriam uma mais valia na \textit{framework} desenvolvida, dando resposta a um maior número de aplicações. Uma vez que os testes apenas foram efetuados quase na reta final do projeto, não houve tempo para esta melhoria, ficando assim como possível trabalho futuro.
 
-A sua realização permitiu ter uma visão externa, sugerindo alterações que para quem esteve no desenvolvimento da solução, muito provavelmente, passariam despercebidas. Algumas destas sugestões foram consideradas e procedeu-se à alteração ainda antes da entrega final, outras ficaram registadas para que se possa proceder à sua execução.
+A sua realização permitiu ter uma visão externa, sugerindo alterações que para quem esteve no desenvolvimento da solução, muito provavelmente, passariam despercebidas. Algumas destas sugestões foram devidamente consideradas e procedeu-se à respetiva alteração ainda antes da entrega final. Outras ficaram apenas registadas para que, futuramente, se possa proceder à sua execução.
 
-Desta forma, pode-se concluir, que a \textit{framework} desenvolvida, pode ainda ser melhorada facilitando ainda mais o desenvolvimento de aplicações a ser utilizadas num ambiente público.
+Destarte, concluí-se que a \textit{framework} desenvolvida pode ainda ser melhorada, facilitando ainda mais o desenvolvimento de aplicações a ser utilizadas num ambiente público.
 
 
 

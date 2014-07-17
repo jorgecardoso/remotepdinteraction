@@ -2,7 +2,7 @@ var game;
 
 
 
-var socket = io.connect('http://localhost:8080');
+var socket = io.connect('http://172.30.4.159:8080');
 
 socket.on('connect', function(){
 	socket.emit('APP_READY', {id: "dsfsddfs"});

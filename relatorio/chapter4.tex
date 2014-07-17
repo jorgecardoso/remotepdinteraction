@@ -5,12 +5,12 @@
 
 Neste capítulo é descrita de forma pormenorizada a solução implementada de modo a responder aos desafios colocados na introdução, cumprindo assim os objetivos propostos.
 Inicialmente é caracterizada a arquitetura definida, fazendo referência aos diferentes componentes que constituem o produto final. Posteriormente são referidas de uma forma breve as tecnologias envolvidas no seu desenvolvimento.
-Por último é especificada a \textit{framework} desenvolvida e o exemplo implementado.
+Por último, é especificada a \textit{framework} desenvolvida e o exemplo implementado.
 
 \section{Visão Geral} \label{sec:geral}
 
 Tal como foi referido na definição dos objetivos, era esperado o desenvolvimento e validação de uma arquitetura que permitisse uma interação baseada na manipulação direta, através de um dispositivo móvel, facilitando a criação de aplicações para ecrãs públicos.  
-Na solução encontrada, de uma maneira global, é possível diferenciar três diferentes componentes, sendo eles o servidor, desenvolvido em \textit{node.js}, a aplicação, que irá correr no servidor criado comunicando com este através de \textit{web sockets} e ainda o utilizador final, aqui identificado como cliente.
+Na solução encontrada, de uma maneira global, é possível diferenciar três diferentes componentes, sendo eles: o servidor, desenvolvido em \textit{node.js}; a aplicação, que irá correr no servidor criado comunicando com este através de \textit{web sockets} e ainda o utilizador final, aqui identificado como cliente.
 
 A figura~\ref{fig:componentes} apresenta, de uma forma simples, os componentes acima descritos.
 
@@ -21,7 +21,7 @@ A figura~\ref{fig:componentes} apresenta, de uma forma simples, os componentes a
 \label{fig:componentes}
 \end{figure}
 
-Na figura ~\ref{fig:sequencia} é representado um diagrama de sequência mostrando as diferentes interações entre os componentes constituintes do sistema implementado. Inicialmente terá de existir um pedido por parte de um ecrã para aceder à aplicação. Neste momento, a aplicação comunica com o servidor e a partir daí está preparada para pedidos de possíveis utilizadores. Um utilizador, ao querer interagir com a aplicação, está a enviar um pedido para esta, que por sua vez avisa o servidor e este é responsável por mostrar no dispositivo o \textit{widget} da aplicação. Nesse momento, o \textit{widget} liga-se ao servidor e após ocorrer a ligação procede-se à troca de ``mensagens'' que permitem ao utilizador definir o seu nome. Quando o cliente tiver o nome definido pode usufruir dos \textit{widgets} disponíveis, realizando-se a comunicação para o servidor, que por sua vez envia novamente para a aplicação.
+Na figura ~\ref{fig:sequencia} é representado um diagrama de sequência mostrando as diferentes interações entre os componentes constituintes do sistema implementado. Inicialmente terá de existir um pedido por parte de um ecrã para aceder à aplicação. Neste momento, a aplicação comunica com o servidor e a partir daí está preparada para pedidos de possíveis utilizadores. Um utilizador, ao querer interagir com a aplicação, está a enviar um pedido para esta, que por sua vez avisa o servidor e este é responsável por mostrar no dispositivo o \textit{widget} da aplicação. Nesse momento, a \textit{widget} liga-se ao servidor e após ocorrer a ligação procede-se à troca de ``mensagens'' que permitem ao utilizador definir o seu nome. Quando o cliente tiver o nome definido pode usufruir dos \textit{widgets} disponíveis, realizando-se a comunicação para o servidor, que por sua vez envia novamente para a aplicação.
 
 \begin{figure}[ht]
 \centering
@@ -39,14 +39,14 @@ Ao longo da implementação houve necessidade de optar por diversas tecnologias 
 
 \begin{itemize}
 
-\item \textbf{Node.js}
+\item \textbf{\textit{Node.js}}
 
 
 \textit{Node.js} é uma plataforma construída para facilitar o desenvolvimento de aplicações de alta escalabilidade em tempo real, com base no interpretador \textit{Javascript V8} da \textit{Google}, que antes da execução compila \textit{JavaScript} em código máquina, melhorando consideravelmente o tempo de execução. Deste modo, \textit{Node} permite a construção de aplicações rápidas e altamente concorrentes.
 
-Segundo Michael Abernethy ~\cite{Abernethy2011} \textit{node} altera a noção de como um servidor deve funcionar, referindo que o seu objetivo é permitir que um programador construa aplicações com grande escalabilidade e que o código desenvolvido suporte milhares de ligações simultâneas numa só máquina. 
+Segundo Michael Abernethy ~\cite{Abernethy2011}, \textit{node} altera a noção de como um servidor deve funcionar, referindo que o seu objetivo é permitir que um programador construa aplicações com grande escalabilidade e que o código desenvolvido suporte milhares de ligações simultâneas numa só máquina. 
 
-\textit{Node.js} opera uma \textit{thread} simples, não bloqueia as chamadas de entrada e saída, permitindo o suporte das diversas ligações, tal como se pode ver na figura ~\ref{fig:node}.
+\textit{Node.js} opera apenas com uma \textit{thread} e não bloqueia as chamadas de entrada e saída, permitindo o suporte das diversas ligações em simultâneo, tal como se pode ver na figura ~\ref{fig:node}.
 
 \begin{figure}[ht]
 \centering
@@ -59,19 +59,19 @@ Segundo Michael Abernethy ~\cite{Abernethy2011} \textit{node} altera a noção d
 
 \pagebreak
 
-\item \textbf{Web Sockets}
+\item \textbf{\textit{Web Sockets}}
 
-De forma a permitir a comunicação do utilizador (lado do cliente), com o servidor criado, foram usados web sockets. Estes foram desenvolvidos para serem implementados em aplicações ou servidores web, usando um protocolo independente baseado em TCP.
+De forma a permitir a comunicação do utilizador (lado do cliente) com o servidor criado, foram usados \textit{web sockets}. Estes foram desenvolvidos para serem implementados em aplicações ou servidores \textit{web}, usando um protocolo independente baseado no \textit{Transmission Control Protocol (TCP)}.
 
 O protocolo \textit{websocket} encontra-se normalizado, o que significa que é seguida uma norma no envio de informação entre o servidor e o \textit{browser} sem que haja uma solicitação por parte do cliente, o que possibilita uma maior interação entre estes, facilitando a criação de aplicações em tempo real. É deste modo criada uma ligação bi-direcional entre o \textit{browser} e o servidor, pois a conexão é mantida aberta enquanto as mensagens são encaminhadas de um lado para o outro.
 
 
-\item \textbf{Socket.io}
+\item \textbf{\textit{Socket.io}}
 
-\textit{Socket.io} é descrita como uma biblioteca \textit{JavaScript} usada no desenvolvimento de aplicações web. Esta é composta por 2 partes, uma biblioteca para o lado do cliente, que corre no \textit{browser}, e outra para o lado do servidor, que para já terá de ser implementado em \textit{node.js}, daí este estar acima referido como uma das tecnologias usadas. Quer o lado do cliente quer o do servidor apresentam \textit{API’s} idênticas. 
+\textit{Socket.io} é descrita como uma biblioteca \textit{JavaScript} usada no desenvolvimento de aplicações \textit{web}. Esta é composta por duas partes: uma biblioteca para o lado do cliente, que é executada no \textit{browser}, e outra para o lado do servidor, que para já terá de ser implementado em \textit{node.js}, daí este estar acima referido como uma das tecnologias usadas. Quer o lado do cliente quer o do servidor apresentam \textit{APIs} idênticas. 
 
 Usa, principalmente como protocolo, \textit{websockets}, também escolhido como tecnologia usada no desenvolvimento desta solução. Contudo, se necessário, podem ser utilizados outros, como por exemplo \textit{Adobe Flash sockets, JSONP polling}, e \textit{AJAX long polling}. 
-A sua escolha aliada a \textit{websockets} fornece bastante recursos, como a transmissão para múltiplos sockets, armazenamento de informação associada a cada cliente e ainda ``inputs/outputs'' assíncronos. 
+A sua escolha aliada a \textit{websockets} fornece bastante recursos, como a transmissão para múltiplos \textit{sockets}, armazenamento de informação associada a cada cliente e ainda \textit{inputs/outputs} assíncronos. 
 
 \item \textbf{Prototype}
 
@@ -79,19 +79,19 @@ A sua escolha aliada a \textit{websockets} fornece bastante recursos, como a tra
 
 Esta \textit{framework} fornece ainda uma biblioteca com funções que suporta classes e objetos baseados em classes, algo que não é possível em \textit{JavaScript}.
 
-\item \textbf{Swipeable}
+\item \textbf{\textit{Swipeable}}
 
-\textit{Swipeable} trata-se de uma biblioteca que permite obter resposta a eventos \textit{swipe} realizados num dispositivo \textit{touch}, sendo uma abstração do \textit{touchstart}, \textit{touchmove} e \textit{touchend}. 
-Foi incluída no ficheiro \textit{widget.js} para possibilitar o desenvolvimento e correto funcionamento do controlo através de \textit{swipe}.
+\textit{Swipeable} trata-se de uma biblioteca que permite obter resposta a eventos \textit{swipe} realizados num dispositivo sensível ao toque, sendo uma abstração do \textit{touchstart}, \textit{touchmove} e \textit{touchend}. 
+Foi incluída no ficheiro \textit{widget.js} para possibilitar o desenvolvimento e o correto funcionamento do controlo através de \textit{swipe}.
 
 \end{itemize}
 
-Para além das tecnologias acima definidas todo o projeto foi realizado recorrendo a JavaScript, HTML e CSS. 
+Para além das tecnologias acima definidas todo o projeto foi realizado recorrendo a \textit{JavaScript}, HTML e CSS. 
 
 
 \section{\textit{Framework} Desenvolvida} \label{sec:framework}
 
-Um dos principais objetivos centrava-se no desenvolvimento de uma \textit{framework} que facilitasse o desenvolvimento de aplicações para ecrãs públicos, que permitissem a manipulação direta por parte dos utilizadores. Deste modo, surge a criação de uma API que permite a construção e utilização de três diferentes tipos de controlo. 
+Um dos principais objetivos centrava-se no desenvolvimento de uma \textit{framework}, que facilitasse o desenvolvimento de aplicações para ecrãs públicos e permitisse a manipulação direta por parte dos utilizadores. Por conseguinte, surge a criação de uma API que permite a construção e utilização de três diferentes tipos de controlo. 
 Na figura~\ref{fig:classes} é representada a estrutura usada, mostrando as classes constituintes, respetivos atributos e métodos e ainda a relação entre as classes.
 
 \begin{figure}[ht]
@@ -107,27 +107,27 @@ A classe \textit{Widget} representa uma abstração dos controlos possíveis, se
 
 	Com o objetivo de facilitar a criação de aplicações para ecrãs públicos, foi desenvolvida uma API, com um conjunto de funcionalidades que permitem a um programador o seu uso na criação de diferentes controlos de acordo com o requerido pela aplicação que irão servir.
 
-	A classe \textit{Widget}, já definida anteriormente, apresenta alguns métodos próprios que são usados nas subclasses permitindo a comunicação com o servidor, (ver tabela ~\ref{table:widget_met}).
+	A classe \textit{Widget}, já definida, apresenta alguns métodos próprios que são usados nas subclasses, permitindo a comunicação com o servidor, como se pode ver tabela ~\ref{table:widget_met}).
 
 	\begin{table}[ht]
  	\renewcommand{\arraystretch}{1.5}
 	\centering
-
+	\caption{Métodos da classe \textit{Widget}}
 	\begin{tabular}{ p{2cm} p{2cm} p{10cm}  }
+	\hline
 	\multicolumn{1}{c}{\textbf{Métodos}} & \multicolumn{1}{c}{\textbf{Parâmetros}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
 	\hline
 	initialize & \multicolumn{1}{c}{id} &Método responsável por inicializar o \textit{widget} \\
 	\hline
 	sendToServer & \multicolumn{1}{c}{} &Método responsável por realizar a comunicação com o servidor \\
 	\hline
-	sendDirection & \multicolumn{1}{c}{dir} &Método que usa o método \textit{sendToServer} para enviar a direção, dir, obtida pelo \textit{widget joystick} \\
+	sendDirection & \multicolumn{1}{c}{dir} &Método que usa o método \textit{sendToServer} para enviar a direção, dir, obtida pela \textit{widget do joystick} \\
 	\hline
-	sendText & \multicolumn{1}{c}{str} &Método que usa o método \textit{sendToServer} para enviar texto, str, obtida pelo \textit{widget}  \\
+	sendText & \multicolumn{1}{c}{str} &Método que usa o método \textit{sendToServer} para enviar texto, str, obtida pela \textit{widget}  \\
 	\hline
-	sendSwipe & \multicolumn{1}{c}{dir} &Método que usa o método \textit{sendToServer} para enviar a direção, dir, obtida pelo \textit{widget swipe}  \\
+	sendSwipe & \multicolumn{1}{c}{dir} &Método que usa o método \textit{sendToServer} para enviar a direção, dir, obtida pela \textit{widget swipe}  \\
 	\hline
 	\end{tabular}
-	\caption{Métodos da classe \textit{Widget}}
 	\label{table:widget_met}
 	\end{table}
 	
@@ -136,18 +136,19 @@ A classe \textit{Widget} representa uma abstração dos controlos possíveis, se
  	\begin{table}[ht]
  	\renewcommand{\arraystretch}{1.5}
 	\centering
-
+	\caption{Métodos disponíveis em cada uma das \textit{widgets}}
 	\begin{tabular}{ p{2cm} p{2cm} p{10cm}  }
+	\hline
 	\multicolumn{1}{c}{\textbf{Métodos}} & \multicolumn{1}{c}{\textbf{Parâmetros}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
 	\hline
-	draw & \multicolumn{1}{c}{elem} &Método responsável por desenhar o widget correspondente no elemento (elem) da página html apresentada no dispositivo \\
+	draw & \multicolumn{1}{c}{elem} &Método responsável por desenhar a widget correspondente no elemento (elem) da página html apresentada no dispositivo \\
 	\hline
-	handleInput & \multicolumn{1}{c}{} &Método responsável por atribuir eventos aos widgets \\
+	handleInput & \multicolumn{1}{c}{} &Método responsável por atribuir eventos às widgets \\
 	\hline
-	addWidget & \multicolumn{1}{c}{elem} &Método responsável por adicionar o widget à barra de widgets disponíveis no elemento, elem, da página html \\
+	addWidget & \multicolumn{1}{c}{elem} &Método responsável por adicionar a widget à barra de widgets disponíveis no elemento, elem, da página html \\
 	\hline
 	\end{tabular}
-	\caption{Métodos disponíveis em cada um dos widget}
+	
 	\label{table:metodos}
 	\end{table}
 
@@ -159,36 +160,36 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 	\begin{table}[ht]
  	\renewcommand{\arraystretch}{1.5}
 	\centering
-
+	\caption{Métodos Gerais}
 	\begin{tabular}{ p{2cm} p{2cm} p{10cm}  }
-	\multicolumn{1}{c}{\textbf{Métodos}} & \multicolumn{1}{c}{\textbf{Parâmetros}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
 	\hline
-	start & \multicolumn{1}{c}{url, options} &Método para inicializar o widgets, responsável por efetuar a ligação com o servidor \\
+	\textbf{Métodos} & \multicolumn{1}{c}{\textbf{Parâmetros}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
 	\hline
-	drawBar & \multicolumn{1}{c}{elem} &Método por desenhar, no elemento, elem, da página html, a barra que mostra ao utilizador os widgets que tem disponíveis \\
+	start & \multicolumn{1}{c}{url, options} &Método para inicializar as widgets, responsável por efetuar a ligação com o servidor \\
 	\hline
-	setOptions & \multicolumn{1}{c}{options} &Método que permite ao programador alterar o conteúdo do que é enviado do widget para a aplicação  \\
+	drawBar & \multicolumn{1}{c}{elem} &Método responsável por desenhar, no elemento, elem, da página html, a barra que mostra ao utilizador as widgets que tem disponíveis \\
+	\hline
+	setOptions & \multicolumn{1}{c}{options} &Método que permite ao programador alterar o conteúdo do que é enviado da widget para a aplicação  \\
 	\hline
 	\end{tabular}
-	\caption{Métodos Gerais}
 	\label{table:metodos_g}
 	\end{table}
 
 \subsection{Controlos Definidos}
 
-	A API desenvolvida apresenta três diferentes tipos de controlos, apresentados na figura~\ref{fig:widgets}, que o programador terá à sua disposição para implementar, de acordo com aplicação desenvolvida. Neste momento existem como possíveis opções, o \textit{joystick}, o \textit{swipe} e ainda outro composto por uma caixa de introdução de texto.
+	A API desenvolvida apresenta três diferentes tipos de controlos, apresentados na figura~\ref{fig:widgets}, que o programador terá à sua disposição para implementar, de acordo com aplicação desenvolvida. Neste momento existem como possíveis opções o \textit{joystick}, o \textit{swipe} e ainda outro, composto por uma caixa de introdução de texto.
 
 	\begin{itemize}
 
-	\item \textbf{Joystick}
+	\item \textbf{\textit{Joystick}}
 
-		Controlo composto pelas quatro setas tradicionais, esquerda, direita, cima e baixo, que pode ser utilizado em qualquer aplicação que exija uma movimentação.
+		Controlo composto pelas quatro setas tradicionais (esquerda, direita, cima e baixo) que pode ser utilizado em qualquer aplicação que exija uma movimentação.
 
-	\item \textbf{Swipe}
+	\item \textbf{\textit{Swipe}}
 
 		Controlo que usa as propriedade \textit{touch} do dispositivo para controlar a aplicação, definido apenas para reconhecer uma direção, embora isso possa ser alterado.
 
-	\item \textbf{InputText}
+	\item \textbf{\textit{InputText}}
 
 		Controlo que permite ao utilizador a interação com aplicações que exijam a introdução de texto.
 
@@ -227,8 +228,8 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 	Um programador que pretenda usufruir das suas funcionalidades deverá:
 
-	\begin{itemize}
-		\item Criar um documento html com o nome \textit{widget.html} e a estrutura apresentada na figura ~\ref{fig:html_struct}
+	\begin{enumerate}
+		\item Criar um documento \textit{HTML} com o nome \textit{widget.html} e a estrutura apresentada na figura ~\ref{fig:html_struct}
 		\item Incluir no ficheiro as seguintes bibliotecas:
 			\begin{itemize}
 			\item prototype.js 
@@ -237,16 +238,16 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 			\end{itemize}
 		\item Incluir no mesmo ficheiro um \textit{script}
 		 onde são chamadas as funções da API.
-	\end{itemize}
+	\end{enumerate}
 
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[scale=0.8]{html}
-		\caption[Estrutura html] {Estrutura para criação de \textit{widgets}}
+		\caption[Estrutura \textit{HTML}] {Estrutura para criação de \textit{widgets}}
 		\label{fig:html_struct}
 	\end{figure}
 
-	Apesar de haver liberdade nas escolha dos widgets a implementar, o método \textit{start(url,options)} tem obrigatoriamente de ser chamado antes da criação dos \textit{widgets} pretendidos. 
+	Apesar de haver liberdade nas escolha das widgets a implementar, o método \textit{start(url,options)} tem obrigatoriamente de ser chamado antes da criação das \textit{widgets} pretendidas. 
 
 
 	
@@ -254,7 +255,7 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 	No âmbito do presente projeto, foi criada uma aplicação exemplo, que permite ao utilizador o uso dos três tipos de controlo disponíveis. 
 
-	Assim, foi desenvolvido o clássico jogo \textit{Snake}, no qual o utilizador é obrigado a inserir o seu nome, usando para isso a opção de introdução de texto e só posteriormente poderá escolher entre o \textit{joystick} ou o \textit{swipe}, servindo qualquer um deles para controlar a direção da cobra durante o jogo. Cabe ao utilizador a escolha do controlo adequado de acordo com as suas preferências ou facilidades, necessitando apenas de carregar na barra superior no botão correspondente ao \textit{widget} desejado.
+	Assim, foi desenvolvido o clássico jogo \textit{Snake}, no qual o utilizador é obrigado a inserir o seu nome, usando para isso a opção de introdução de texto e só posteriormente poderá escolher entre o \textit{joystick} ou o \textit{swipe}, servindo qualquer um deles para controlar a direção da cobra durante o jogo. Cabe ao utilizador a escolha do controlo adequado de acordo com as suas preferências ou facilidades, necessitando apenas de carregar na barra superior no botão correspondente à \textit{widget} desejada.
 
 	\subsection{Ligação}
 
@@ -266,7 +267,7 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 	Uma vez que se trata de uma interação pública com a qual uma ou mais pessoas devem poder interagir, é importante que durante a sua utilização, a pessoa que se está a servir desta, seja capaz de perceber o fluxo de informação que ocorre entre ela e a aplicação. Por exemplo, deverá conseguir identificar-se quando existe mais do que um utilizador e ainda perceber em que momento pode começar a interagir.
 
-	No exemplo implementado, sempre que uma nova pessoa se conecta com o jogo, o servidor lança um alerta (figura~\ref{fig:novo}) aparecendo uma notificação informando sobre a existência de um novo jogador em condições usufruir da aplicação presente. 
+	No exemplo implementado, sempre que uma nova pessoa se conecta com o jogo, o servidor lança um alerta que faz aparecer uma notificação como mostra a figura~\ref{fig:novo}, informando sobre a existência de um novo jogador em condições de usufruir da aplicação presente. 
 	
 	\begin{figure}[ht]
 		\centering
@@ -282,7 +283,7 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 	Neste tipo de aplicações é importante ter em conta de que modo é feita a distinção entre os diversos utilizadores, percebendo que cada um dos intervenientes terá de se reconhecer durante o momento da interação. 
 
-	No jogo implementado, tal como foi referido no ponto anterior o jogador é identificado pelo nome que este escolhe quando se conecta com o ecrã. No entanto há ainda a necessidade deste se reconhecer na aplicação que está no momento a utilizar. A solução encontrada, no contexto do exemplo usado, passou por colorir o nome do jogador com a cor da cobra que o representa durante o jogo, permitindo assim a distinção dos jogadores e transmitindo-lhes quem é quem no jogo que está a decorrer (figura ~\ref{fig:user}).
+	No jogo implementado, tal como foi referido no ponto anterior o jogador é identificado pelo nome que este escolhe quando se conecta com o ecrã. No entanto, há ainda a necessidade deste se reconhecer na aplicação que está no momento a utilizar. A solução encontrada, no contexto do exemplo usado, passou por colorir o nome do jogador com a cor da cobra que o representa durante o jogo, como é mostrado na figura ~\ref{fig:user}, permitindo assim a distinção dos jogadores e transmitindo-lhes quem é quem no jogo que está a decorrer.
 
 	\begin{figure}[ht]
 		\centering
@@ -295,12 +296,12 @@ Para além dos métodos acima descritos, que constituem as opções disponíveis
 
 	Enquanto utilizador final, para poder utilizar a aplicação desenvolvida será necessário:
 	\begin{itemize}
-		\item Possuir um dispositivo com acesso a Internet;
+		\item Possuir um dispositivo móvel com acesso a Internet;
 		\item Ter um \textit{browser} instalado;
 		\item Ter instalada no seu dispositivo uma aplicação que permita a leitura de \textit{QR codes}.
 	\end{itemize}
 
-	O diagrama seguinte, ilustra, de forma sequencial os passos existentes numa interação com a aplicação.
+	O diagrama da figura~\ref{fig:interagir}, ilustra, de forma sequencial os passos existentes numa interação com a aplicação.
 	\newline
 
 	\begin{figure}[ht]
