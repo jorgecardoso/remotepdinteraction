@@ -3,9 +3,9 @@
 <head>
 	<title>Widget Test</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-	<script src="/socket.io/socket.io.js"></script>
+ 	<script src="js/socket.io.js"></script>
 	<script type="text/javascript" src="js/prototype.js"></script>
-	<script type="text/javascript" src="js/widget.js"></script>
+	<script type="text/javascript" src="js/widget.js?15"></script>
 	<script type="text/javascript" src="js/swipeable.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
@@ -19,8 +19,8 @@
 </body>
 
 <script type="text/javascript">
-		
-		new Widget.start('http://172.30.4.159:8080', {widgetbar: false});
+		sendUserEvent("KEYBOARD", "a");
+	/*	new Widget.start('http://192.168.1.67:8080', {widgetbar: false});
 		new Widget.drawBar('widget_bar');
 		joystick = new Widget.Joystick('#widget',"dsfsddfs");
 		joystick.addWidget('#my_widgets');
@@ -30,5 +30,6 @@
 		swipe.addWidget('#my_widgets');
 		input.draw('#widget');
 		new Widget.ready();
+		*/
 	</script>
 </html>
