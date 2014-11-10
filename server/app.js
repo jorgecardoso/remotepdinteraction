@@ -6,6 +6,8 @@ var express = require('express'),
 
 var port = process.env.PORT || 8080;
 
+var serverPublicAddress = process.argv[2] || "localhost";
+
 // Initialize a new socket.io object. It is bound to 
 // the express app, which allows them to coexist.
 
@@ -45,12 +47,18 @@ var game = io.sockets.on('connection', function(socket) {
 	
 	// When an application starts, it sends a unique application id to the Node.js server
 	socket.on('APP_READY', function(data){
+		console.log("APP_READY ");
 		console.log("Application connected: " + data.id);
 		applications[socket.id] = {};
 		applications[data.id] = {};
 		applications[data.id].socketId = socket.id;
 		applications[socket.id].applicationId = data.id;
 		applications[socket.id].users =  Array();
+		
+		console.log("sending server settings");
+		// Notify app of server public address
+		io.sockets.socket(socket.id).emit("SERVER_SETTINGS", {serverAddress:"http://"+serverPublicAddress+":"+port});
+			
 	})
 	
 	
@@ -70,6 +78,9 @@ var game = io.sockets.on('connection', function(socket) {
 			
 			// Notify app
 			io.sockets.socket(applications[data.applicationId].socketId).emit("USER_CONNECTED", {userId:socket.id});
+			
+			//Notify client
+			io.sockets.socket(socket.id).emit("APPLICATION_READY", {applicationId:data.applicationId});
 		} else {
 			io.sockets.socket(socket.id).emit('ERROR', {message:"Application does not exist."});
 			console.log("    Error: Application does not exist.");
@@ -81,7 +92,11 @@ var game = io.sockets.on('connection', function(socket) {
 	socket.on('USER_EVENT', function(data){
 		console.log("USER_EVENT: " + socket.id );
 		
-		applicationId = users[socket.id].applicationId;
+		if ( users[socket.id] !== undefined ) {
+			applicationId = users[socket.id].applicationId; 
+		} else {
+			return;
+		}
 		
 		// check if application exists 
 		if ( applications[applicationId] !== undefined ) {
@@ -89,7 +104,7 @@ var game = io.sockets.on('connection', function(socket) {
 			
 			
 			// Notify app
-			io.sockets.socket(applications[applicationId].socketId).emit("USER_EVENT", data);
+			io.sockets.socket(applications[applicationId].socketId).emit("USER_EVENT", {userId: socket.id, data: data});
 		} else {
 			io.sockets.socket(socket.id).emit('ERROR', {message:"Application does not exist."});
 			console.log("    Error: Application does not exist.");
@@ -97,36 +112,7 @@ var game = io.sockets.on('connection', function(socket) {
 		
 	})
 	
-		/*
-
-		socket.on('CLIENT_READY', function(data){
-
-			console.log('CLIENT_READY' + data.name);
-			socket.join(data.id);
-			num_players = game.clients(data.id).length;
-			console.log("NUM: " + _players); 
-			//if(num_players==FULL_ROOM+1 && game_masters[data.id]!=undefined)
-				
-				game.in(data.id).emit('NEW_USER',{ player: data.name});
-				game.in(data.id).emit('SET_USER',{ player: data.name});
-				console.log("Numero " + num_players);
-
-		})
-
-    	socket.on('DIRECTION', function(data){
-    		console.log("esquerda: " + data.cmd);
-
-    		io.sockets.socket(game_masters[data.id]).emit("asd", data);
-    	});
-
-    	socket.on('TEXT', function(x){
-    		io.sockets.socket(game_masters[x.id]).emit("lol",x);	
-    	});
-
-    	socket.on('SWIPE', function(data){
-    		io.sockets.socket(game_masters[data.id]).emit("asd",data);
-    	});
-    	*/
+	
     	socket.on('disconnect', function(){
     		console.log("Socket disconnected: " + socket.id);
     		if ( applications[socket.id] !== undefined ) { // application socket

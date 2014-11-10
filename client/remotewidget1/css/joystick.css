@@ -1,0 +1,125 @@
+*, 
+*:after, 
+*:before { 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+html, 
+body {
+	height: 100%;
+
+} 
+
+
+body {
+  text-align: center;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+body:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+
+#swipe {
+  width: 300px;
+  height: 300px;
+  background-color: #ccc; 
+}
+/* The element to be centered, can
+   also be of any width and height */ 
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#toTop, #toDown{
+	text-align: center;
+}
+
+#up_key, #left_key, #down_key, #right_key{
+	width: 75px;
+	height: 75px;
+}
+
+#my_widgets {
+  padding: 0;
+  list-style: none;
+}
+
+#widget_bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#my_widgets {
+  text-align: center;
+
+  width: 100%;
+  float: left;
+  margin: 0 0 3em 0;
+  padding: 0;
+  list-style: none;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc; 
+  border-top: 1px solid #ccc;
+}
+
+#my_widgets li {
+  display: inline-block;
+  height: 59px;
+  line-height: 59px;
+  border-right: 1px solid #ccc; 
+}
+
+#my_widgets li:first-child {
+  border-left: 1px solid #ccc; 
+}
+
+#my_widgets li a {
+    /*display: block;*/
+    padding: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #069;
+   
+}
+ 
+/*replace the content value with the
+corresponding value from the list below*/
+ 
+.icon:before {
+    
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: #000;
+    font-size: 30px;
+
+}
+
+#joystick:before {
+  content: "\f047";
+}
+
+#text_input:before {
+  content: "\f031";
+}
+
+#swipe_button:before {
+  content: "\f0a6";
+
+}
+a {
+  text-decoration: none;
+}

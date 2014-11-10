@@ -1,40 +1,54 @@
+function PDRemoteWidget (serverAddress, applicationId) {
+    this.serverAddress = serverAddress;
+    this.applicationId = applicationId;
+    this.onRemoteWidgetNewUser = undefined;
+    
+    /*
+    this.getInfo = function() {
+        return this.color + ' ' + this.type + ' apple';
+    };
+    */
+    
+	var socket = io.connect( this.serverAddress);
 
-
-var socket = io.connect('http://192.168.1.67:8080');
-console.log("Connecting application socket. ");
-socket.on('connect', function(){
-	socket.emit('APP_READY', {id: "dsfsddfs"});
-
+	console.log("Connecting application socket. ");
 	
-});
+	socket.on('connect', function(){
+		socket.emit('APP_READY', {id: this.applicationId});
 
-socket.on('USER_CONNECTED', function(data){
-	console.log("User connected: " + data.userId );
+	}.bind(this));
 	
-	//onRemoteWidgetNewUser(data);
+	socket.on('SERVER_SETTINGS', function(data){
+		console.log("SERVER_SETTINGS");
 	
-
-});
-
-socket.on('USER_DISCONNECTED', function(data){
-	console.log("User disconnected: " + data.userId );
+		this.onRemoteWidgetServerSettings(data);
 	
-	//onRemoteWidgetNewUser(data);
-	
-
-});
-
-socket.on('NEW_USER', function(data){
-	
-	onRemoteWidgetNewUser(data);
+	}.bind(this));	
 	
 
-});
-
-
-socket.on('USER_EVENT', function(data){
+	socket.on('USER_CONNECTED', function(data){
+		console.log("USER_CONNECTED");
 	
-	console.log(data);
+		this.onRemoteWidgetNewUser(data);
+	
+	}.bind(this));
+
+	socket.on('USER_DISCONNECTED', function(data){
+		console.log("USER_DISCONNECTED");
+	
+		this.onRemoteWidgetUserDisconnected(data);
 	
 
-});
+	}.bind(this));
+
+
+
+
+	socket.on('USER_EVENT', function(data){
+	
+		console.log('USER_EVENT');
+		this.onRemoteWidgetUserEvent(data);
+
+	}.bind(this));
+
+}
