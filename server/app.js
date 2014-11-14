@@ -27,16 +27,17 @@ app.get('/', function(req, res){
 		res.render('index');
 		console.log('render');
 	});
-
-app.get('/user', function (req, res) {
+*/
+app.get('/applications', function (req, res) {
 	    var key = req.params.key;
 	    //console.log(key);
-	    res.render('widget.html', {key:key});
+	    res.render('application-list.html', {apps: applications });
 });
-*/
+
 
 
 var applications = {};
+var application_ids = {};
 var users = {};
 
 	// Initialize a new socket.io applicaion, named 'game'
@@ -50,11 +51,12 @@ var game = io.sockets.on('connection', function(socket) {
 		console.log("APP_READY ");
 		console.log("Application connected: " + data.id);
 		applications[socket.id] = {};
-		applications[data.id] = {};
-		applications[data.id].socketId = socket.id;
+		application_ids[data.id] = {};
+		application_ids[data.id].socketId = socket.id;
 		applications[socket.id].applicationId = data.id;
 		applications[socket.id].users =  Array();
-		
+		// app passes widget url
+		applications[socket.id].widgetUrl = data.widgetUrl;
 		console.log("sending server settings");
 		// Notify app of server public address
 		io.sockets.socket(socket.id).emit("SERVER_SETTINGS", {serverAddress:"http://"+serverPublicAddress+":"+port});
@@ -70,14 +72,14 @@ var game = io.sockets.on('connection', function(socket) {
 		
 		
 		// check if application exists 
-		if( applications[data.applicationId] !== undefined ) {
+		if( application_ids[data.applicationId] !== undefined ) {
 			users[socket.id] = {};
 			users[socket.id].applicationId = data.applicationId;
-			applications[applications[data.applicationId].socketId].users.push(socket.id);
-			console.log("Application users: " + applications[applications[data.applicationId].socketId].users + "");
+			applications[application_ids[data.applicationId].socketId].users.push(socket.id);
+			console.log("Application users: " + applications[application_ids[data.applicationId].socketId].users + "");
 			
 			// Notify app
-			io.sockets.socket(applications[data.applicationId].socketId).emit("USER_CONNECTED", {userId:socket.id});
+			io.sockets.socket(application_ids[data.applicationId].socketId).emit("USER_CONNECTED", {userId:socket.id});
 			
 			//Notify client
 			io.sockets.socket(socket.id).emit("APPLICATION_READY", {applicationId:data.applicationId});
@@ -99,12 +101,12 @@ var game = io.sockets.on('connection', function(socket) {
 		}
 		
 		// check if application exists 
-		if ( applications[applicationId] !== undefined ) {
-			applicationSocketId = applications[applicationId].socketId;
+		if ( application_ids[applicationId] !== undefined ) {
+			applicationSocketId = application_ids[applicationId].socketId;
 			
 			
 			// Notify app
-			io.sockets.socket(applications[applicationId].socketId).emit("USER_EVENT", {userId: socket.id, data: data});
+			io.sockets.socket(application_ids[applicationId].socketId).emit("USER_EVENT", {userId: socket.id, data: data});
 		} else {
 			io.sockets.socket(socket.id).emit('ERROR', {message:"Application does not exist."});
 			console.log("    Error: Application does not exist.");
@@ -125,6 +127,7 @@ var game = io.sockets.on('connection', function(socket) {
     			}
 
 				// Delete users of that app    		
+				/*
     			var userKeys = Object.keys(users);
     		
     			for (var i = 0; i < userKeys.length; i++ ) {
@@ -133,15 +136,16 @@ var game = io.sockets.on('connection', function(socket) {
     				}
 
     			}
+    			*/
     			
     			// Delete app
-    			delete applications[applicationId];
+    			delete application_ids[applicationId];
     			delete applications[socket.id];
     		
     		
     		} else if ( users[socket.id] !==  undefined ) { // user socket
     			applicationId = users[socket.id].applicationId
-    			applicationSocketId = applications[applicationId].socketId;
+    			applicationSocketId = application_ids[applicationId].socketId;
     			var index = applications[applicationSocketId].users.indexOf(socket.id);
     			if (index > -1) {
  				   applications[applicationSocketId].users.splice(index, 1);

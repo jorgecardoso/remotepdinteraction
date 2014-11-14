@@ -1,4 +1,4 @@
-var pdRemoteWidget = new PDRemoteWidget('http://localhost:8080', "myappid");
+var pdRemoteWidget = new PDRemoteWidget('http://localhost:8080', "myappid", "/remotewidget/index.html");
 
 pdRemoteWidget.onRemoteWidgetNewUser = function (user) {
 	console.log("User connected: " + user);
