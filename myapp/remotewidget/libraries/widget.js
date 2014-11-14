@@ -33,7 +33,11 @@ function PDRemoteWidget (serverAddress, applicationId) {
 		this.onRemoteWidgetError(data);
 	}.bind(this));
 
-
+	socket.on('FEEDBACK', function(data){
+		console.log('FEEDBACK');
+		this.onRemoteWidgetFeedback(data);
+	}.bind(this));
+	
     this.sendUserEvent = function(value) {
 		socket.emit('USER_EVENT', value);
 	}

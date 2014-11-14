@@ -56,7 +56,7 @@ var game = io.sockets.on('connection', function(socket) {
 		applications[socket.id].applicationId = data.id;
 		applications[socket.id].users =  Array();
 		// app passes widget url
-		applications[socket.id].widgetUrl = data.widgetUrl;
+		applications[socket.id].widgetUrl = data.widgetUrl+"?serverAddress=http://"+serverPublicAddress+":"+port + "&applicationId="+data.id;
 		console.log("sending server settings");
 		// Notify app of server public address
 		io.sockets.socket(socket.id).emit("SERVER_SETTINGS", {serverAddress:"http://"+serverPublicAddress+":"+port});
@@ -75,6 +75,8 @@ var game = io.sockets.on('connection', function(socket) {
 		if( application_ids[data.applicationId] !== undefined ) {
 			users[socket.id] = {};
 			users[socket.id].applicationId = data.applicationId;
+			//todo: we don't need an explicit structure to now the users of an app
+			// just go through all users and check their appid...
 			applications[application_ids[data.applicationId].socketId].users.push(socket.id);
 			console.log("Application users: " + applications[application_ids[data.applicationId].socketId].users + "");
 			
@@ -104,6 +106,17 @@ var game = io.sockets.on('connection', function(socket) {
 		if ( application_ids[applicationId] !== undefined ) {
 			applicationSocketId = application_ids[applicationId].socketId;
 			
+			// check if app has this user
+			if ( applications[applicationSocketId].users.indexOf(socket.id) < 0 ) {
+				applications[applicationSocketId].users.push(socket.id);
+				// Notify app
+				io.sockets.socket(applicationSocketId).emit("USER_CONNECTED", {userId:socket.id});
+			
+				//Notify client
+				io.sockets.socket(socket.id).emit("APPLICATION_READY", {applicationId:applicationId});
+				
+			}
+			
 			
 			// Notify app
 			io.sockets.socket(application_ids[applicationId].socketId).emit("USER_EVENT", {userId: socket.id, data: data});
@@ -114,6 +127,13 @@ var game = io.sockets.on('connection', function(socket) {
 		
 	})
 	
+	socket.on('FEEDBACK', function(data){
+		console.log("FEEDBACK: " + socket.id );
+		
+		// Notify user
+		io.sockets.socket(data.userId).emit("FEEDBACK", data);		
+		
+	})
 	
     	socket.on('disconnect', function(){
     		console.log("Socket disconnected: " + socket.id);
@@ -145,15 +165,19 @@ var game = io.sockets.on('connection', function(socket) {
     		
     		} else if ( users[socket.id] !==  undefined ) { // user socket
     			applicationId = users[socket.id].applicationId
-    			applicationSocketId = application_ids[applicationId].socketId;
-    			var index = applications[applicationSocketId].users.indexOf(socket.id);
-    			if (index > -1) {
- 				   applications[applicationSocketId].users.splice(index, 1);
-				}
-				console.log("Application users: " + applications[applicationSocketId].users + "");
+    			
+    			// see if app still exists, and if so, remove the user and notify the app
+    			if ( application_ids[applicationId] !== undefined ) {
+    				applicationSocketId = application_ids[applicationId].socketId;
+    				var index = applications[applicationSocketId].users.indexOf(socket.id);
+    				if (index > -1) {
+ 				   		applications[applicationSocketId].users.splice(index, 1);
+					}
+					console.log("Application users: " + applications[applicationSocketId].users + "");
 				
-				//Notify app
-				io.sockets.socket(applicationSocketId).emit("USER_DISCONNECTED", {userId:socket.id});
+					//Notify app
+					io.sockets.socket(applicationSocketId).emit("USER_DISCONNECTED", {userId:socket.id});
+				}
     		} else {
     			console.log("Socket not assigned to any application.");
 

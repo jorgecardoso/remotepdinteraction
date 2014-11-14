@@ -9,6 +9,10 @@ function PDRemoteWidget (serverAddress, applicationId, widgetRelativeUrl) {
     };
     */
     
+    this.sendFeedback = function(userId, type, value) {
+        socket.emit('FEEDBACK', {userId: userId, type: type, value:value});
+    }
+    
 	var socket = io.connect( this.serverAddress);
 
 	console.log("Connecting application socket. ");
@@ -50,9 +54,11 @@ function PDRemoteWidget (serverAddress, applicationId, widgetRelativeUrl) {
 
 	socket.on('USER_EVENT', function(data){
 	
-		console.log('USER_EVENT');
+		//console.log('USER_EVENT');
 		this.onRemoteWidgetUserEvent(data);
 
 	}.bind(this));
+	
+	
 
 }
