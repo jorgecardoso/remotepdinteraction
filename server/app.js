@@ -1,4 +1,21 @@
+var serverPublicAddress = process.argv[2] || "localhost";
+
 // Start the application by running 'node app.js' in your terminal
+
+var os = require('os');
+var ifaces = os.networkInterfaces();
+for (var dev in ifaces) {
+  var alias = 0;
+  ifaces[dev].forEach(function(details){
+    if (details.family=='IPv4' && details.internal==false) {
+      console.log(dev+(alias?':'+alias:''),details);
+      serverPublicAddress = details.address;
+      ++alias;
+    }
+  });
+}
+
+
 
 
 var express = require('express'),
@@ -6,7 +23,7 @@ var express = require('express'),
 
 var port = process.env.PORT || 8080;
 
-var serverPublicAddress = process.argv[2] || "localhost";
+
 
 // Initialize a new socket.io object. It is bound to 
 // the express app, which allows them to coexist.
@@ -57,9 +74,10 @@ var game = io.sockets.on('connection', function(socket) {
 		applications[socket.id].users =  Array();
 		// app passes widget url
 		applications[socket.id].widgetUrl = data.widgetUrl+"?serverAddress=http://"+serverPublicAddress+":"+port + "&applicationId="+data.id;
+		applications[socket.id].iconUrl = data.iconUrl;
 		console.log("sending server settings");
 		// Notify app of server public address
-		io.sockets.socket(socket.id).emit("SERVER_SETTINGS", {serverAddress:"http://"+serverPublicAddress+":"+port});
+		io.sockets.socket(socket.id).emit("SERVER_SETTINGS", {serverAddress:"http://"+serverPublicAddress+":"+port, widgetUrl: applications[socket.id].widgetUrl});
 			
 	})
 	
@@ -94,7 +112,7 @@ var game = io.sockets.on('connection', function(socket) {
 	
 	
 	socket.on('USER_EVENT', function(data){
-		console.log("USER_EVENT: " + socket.id );
+		console.log("USER_EVENT: " + socket.id + " " + JSON.stringify(data));
 		
 		if ( users[socket.id] !== undefined ) {
 			applicationId = users[socket.id].applicationId; 

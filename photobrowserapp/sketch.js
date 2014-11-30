@@ -18,7 +18,7 @@ var imagem;
 
 function setup() {
     createCanvas(600, 600);
-    pdRemoteWidget = new PDRemoteWidget('http://localhost:8080', "Multiplayer Pong", "/remotewidget/index.html", "http://jorgecardoso.eu/temp/myapp/icon.png");
+    pdRemoteWidget = new PDRemoteWidget('http://localhost:8080', "Photo Browser", "/remotewidget/index.html", "http://jorgecardoso.eu/temp/photobrowserapp/icon.jpg");
     pdRemoteWidget.onRemoteWidgetNewUser = onRemoteWidgetNewUser;
 
     pdRemoteWidget.onRemoteWidgetUserDisconnected = onRemoteWidgetUserDisconnected;

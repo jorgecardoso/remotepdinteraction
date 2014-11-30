@@ -1,20 +1,47 @@
 <html>
+<head>
+<title>
+List of Applications in Public Display
+</title>
+<style>
+a {
+	font-size:20px;
 
+
+}
+img {
+	border: 0px solid black;
+	vertical-align: middle;
+	padding-right: 50;
+	
+}
+
+p {
+	height:25px;
+}
+</style>
+</head>
 <body>
+<h1>List of Applications in Public Display</h1>
 <script>
 var data = <%-JSON.stringify(apps) %>;
 
 var apps = Object.keys(data);
     		
 	for (var i = 0; i < apps.length; i++ ) {
+		
     	var a = document.createElement('a');
-		var linkText = document.createTextNode(data[apps[i]].applicationId);
+    	var img = document.createElement('img');
+    	img.src = data[apps[i]].iconUrl;
+    	img.width = "100";
+		var linkText = document.createTextNode(decodeURIComponent(data[apps[i]].applicationId));
+		a.appendChild(img);
 		a.appendChild(linkText);
 		//a.title = apps[i].widgetUrl;
 		a.href = data[apps[i]].widgetUrl;
 		document.body.appendChild(a);
 		
-		var br = document.createElement('br');
+		var br = document.createElement('p');
 		document.body.appendChild(br);
 
 	}
